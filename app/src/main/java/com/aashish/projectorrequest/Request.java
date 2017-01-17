@@ -27,6 +27,10 @@ public class Request extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
+
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+
         date = (EditText) findViewById(R.id.date);
         hour = (EditText) findViewById(R.id.hour);
         staffcode = (EditText) findViewById(R.id.staffcode);
@@ -49,8 +53,8 @@ public class Request extends AppCompatActivity {
         pDialog.setMessage("Get Data");
         showDialog();
 
-        final StringRequest strReq = new StringRequest(com.android.volley.Request.Method.GET,
-                BuildConfig.URL_get, new com.android.volley.Response.Listener<String>() {
+        final StringRequest strReq = new StringRequest(com.android.volley.Request.Method.POST,
+                BuildConfig.URL_request, new com.android.volley.Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {

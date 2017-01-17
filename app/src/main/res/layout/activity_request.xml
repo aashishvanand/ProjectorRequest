@@ -28,13 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/staffcode"
-        android:hint="store the value when user login in shared pref"/>
+        android:hint="store the value when user login in shared pref ex cs123"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/projector"
-        android:hint="use dropdown to select the model"/>
+        android:hint="use dropdown to select the model ex canon"/>
 
     <Button
         android:layout_width="wrap_content"
