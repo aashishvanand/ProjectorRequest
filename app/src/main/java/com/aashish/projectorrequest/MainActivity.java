@@ -18,18 +18,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog pDialog;
     TextView textView;
-    ArrayAdapter<JSONArray> hourArray;
-    ArrayAdapter<JSONArray> staffcodeArray;
-    ArrayAdapter<JSONArray> projectorArray;
+    ArrayList<String> hourArray = new ArrayList<String>();
+    ArrayList<String> staffcodeArray = new ArrayList<String>();
+    ArrayList<String> projectorArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
         textView = (TextView) findViewById(R.id.json);
         getdata();
     }
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private void getdata()
     {
         // Tag used to cancel the request
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
         String tag_string_req = "get_data";
 
         pDialog.setMessage("Get Data");
@@ -84,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
                         for (int len=0;len<hour.length();len++)
                         {
                             //use these to inflate the list
-                            hourArray.add(hour);
-                            staffcodeArray.add(staffcode);
-                            projectorArray.add(projector);
+                            hourArray.add(hour.toString());
+                            staffcodeArray.add(staffcode.toString());
+                            projectorArray.add(projector.toString());
                         }
 
 
