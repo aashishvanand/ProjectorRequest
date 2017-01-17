@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
+
         textView = (TextView) findViewById(R.id.json);
         getdata();
     }
@@ -65,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     {
         // Tag used to cancel the request
         pDialog = new ProgressDialog(this);
+        pDialog.setTitle("Get Data");
         pDialog.setCancelable(false);
         String tag_string_req = "get_data";
 

@@ -28,9 +28,6 @@ public class Request extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
 
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
-
         date = (EditText) findViewById(R.id.date);
         hour = (EditText) findViewById(R.id.hour);
         staffcode = (EditText) findViewById(R.id.staffcode);
@@ -48,9 +45,12 @@ public class Request extends AppCompatActivity {
     private void requestdata()
     {
         // Tag used to cancel the request
-        String tag_string_req = "get_data";
+        pDialog = new ProgressDialog(this);
+        pDialog.setTitle("Request_Data");
+        pDialog.setCancelable(false);
+        String tag_string_req = "request_data";
 
-        pDialog.setMessage("Get Data");
+        pDialog.setMessage("Making a Request");
         showDialog();
 
         final StringRequest strReq = new StringRequest(com.android.volley.Request.Method.POST,
@@ -88,16 +88,15 @@ public class Request extends AppCompatActivity {
                         error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
-        }){
+        }) {
 
             @Override
             protected Map<String, String> getParams() {
-                // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
-                params.put("date", date.toString());
-                params.put("hour", hour.toString());
-                params.put("staffcode", staffcode.toString());
-                params.put("projector", projector.toString());
+                params.put("date", date.getText().toString());
+                params.put("hour", hour.getText().toString());
+                params.put("staffcode", staffcode.getText().toString());
+                params.put("projector", projector.getText().toString());
 
                 return params;
             }
