@@ -2,10 +2,12 @@ package com.aashish.projectorrequest;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,16 +20,35 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText editTextId;
+    java.sql.Time timeValue;
+    SimpleDateFormat format;
+    Calendar c;
+    int year, month, day;
+    SimpleDateFormat formatter;
+
+
+    private Calendar calendar;
+    private EditText dateView;
+
+
+    private EditText date1;
     private Button buttonGet;
     private TextView textViewResult;
 
@@ -36,18 +57,54 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> hourArray = new ArrayList<String>();
     ArrayList<String> staffcodeArray = new ArrayList<String>();
     ArrayList<String> projectorArray = new ArrayList<String>();
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editTextId = (EditText) findViewById(R.id.editTextId);
+        c = Calendar.getInstance();
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+        date1 = (EditText) findViewById(R.id.date);
         buttonGet = (Button) findViewById(R.id.buttonGet);
         textViewResult = (TextView) findViewById(R.id.textViewResult);
 
         buttonGet.setOnClickListener(this);
         textView = (TextView) findViewById(R.id.json);
         getdata();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        buttonGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get Current Date
+
+                CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment();
+                cdp.show(com.aashish.projectorrequest.MainActivity.this.getSupportFragmentManager(), "Material Calendar Example");
+                cdp.setOnDateSetListener(new CalendarDatePickerDialogFragment.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
+                        try {
+                            formatter = new SimpleDateFormat("yyyy-MM-dd");
+                            String dateInString = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                            Date date = formatter.parse(dateInString);
+
+                            date1.setText(formatter.format(date).toString());
+                        } catch (Exception ex) {
+                            date1.setText(ex.getMessage().toString());
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -73,28 +130,27 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getdata()
-    {
-        String id = editTextId.getText().toString().trim();
+    private void getdata() {
+        String id = date1.getText().toString().trim();
         if (id.equals("")) {
             Toast.makeText(this, "Please enter an id", Toast.LENGTH_LONG).show();
             return;
         }
-        pDialog = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
+        pDialog = ProgressDialog.show(this, "Please wait...", "Fetching...", false, false);
 
-        String url = Config.DATA_URL+editTextId.getText().toString().trim();
+        String url = Config.DATA_URL + date1.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 pDialog.dismiss();
-//                showJSON(response);
+                showJSON(response);
             }
         },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -110,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                BuildConfig.URL_get, new com.android.volley.Response.Listener<String>() {
+                BuildConfig.URL_get, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -125,8 +181,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONArray staffcode = jObj.getJSONArray("staffcode");
                         JSONArray projector = jObj.getJSONArray("projector");
 
-                        for (int len=0;len<hour.length();len++)
-                        {
+                        for (int len = 0; len < hour.length(); len++) {
                             //use these to inflate the list
                             hourArray.add(hour.toString());
                             staffcodeArray.add(staffcode.toString());
@@ -146,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-        }, new com.android.volley.Response.ErrorListener() {
+        }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -159,6 +214,23 @@ public class MainActivity extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    private void showJSON(String response) {
+        String name="";
+        String address="";
+        String vc = "";
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray result = jsonObject.getJSONArray(Config.JSON_ARRAY);
+            JSONObject collegeData = result.getJSONObject(0);
+            name = collegeData.getString(Config.KEY_NAME);
+            address = collegeData.getString(Config.KEY_ADDRESS);
+            vc = collegeData.getString(Config.KEY_VC);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        textViewResult.setText("Name:\t"+name+"\nAddress:\t" +address+ "\nVice Chancellor:\t"+ vc);
+    }
+
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
@@ -167,5 +239,46 @@ public class MainActivity extends AppCompatActivity {
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Main Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
+
+    @Override
+    public void onClick(View view) {
+        getdata();
     }
 }
