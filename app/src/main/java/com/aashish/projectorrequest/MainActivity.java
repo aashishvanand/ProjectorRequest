@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     private ProgressDialog pDialog;
     TextView textView;
     ArrayList<String> hourArray = new ArrayList<String>();
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         pDialog.setMessage("Get Data");
         showDialog();
 
-        StringRequest strReq = new StringRequest(Request.Method.GET,
+        StringRequest strReq = new StringRequest(Request.Method.POST,
                 BuildConfig.URL_get, new com.android.volley.Response.Listener<String>() {
 
             @Override

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_request"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,36 +10,96 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.aashish.projectorrequest.Request">
+    tools:context="com.aashish.projectorrequest.Request"
+    android:background="@color/colorPrimary">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        >
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:id="@+id/date"
-        android:hint="yyyy-mm-dd"/>
+        android:hint="yyyy-mm-dd"
+        android:onClick="setDate"
+        android:textColor="@color/white"
+        android:maxLength="10"
+        android:drawableRight="@drawable/date"/>
+    </android.support.design.widget.TextInputLayout>
 
 
-    <EditText
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/spinner"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        app:ms_multiline="false"
+        app:ms_hint="hint"
+        app:ms_enableFloatingLabel="false"
+        app:ms_enableErrorLabel="false"
+        android:layout_gravity="center"
+        app:ms_floatingLabelText="floating label"
+        app:ms_floatingLabelColor="#FFF"
+        app:ms_hintColor="#FFF"
+        app:ms_arrowColor="#FFF"
+        android:background="#FFFFFF"
+        app:ms_thickness=".5dp"
+        app:ms_arrowSize="16dp"
+        app:ms_alignLabels="false"
+        android:backgroundTint="#FFF"
+        android:popupBackground="#673AB7" />
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hour"
-        android:hint="use dropdown 1-8"/>
-
+        android:textColorHint="@color/white">
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:id="@+id/staffcode"
-        android:hint="store the value when user login in shared pref ex cs123"/>
+        android:drawableRight="@drawable/user"
+        android:hint="ex cs123"
+        android:textColor="@color/white"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/projector"
-        android:hint="use dropdown to select the model ex canon"/>
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/spinner1"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        app:ms_multiline="false"
+        app:ms_hint="hint"
+        app:ms_enableFloatingLabel="false"
+        app:ms_enableErrorLabel="false"
+        android:layout_gravity="center"
+        app:ms_floatingLabelText="floating label"
+        app:ms_floatingLabelColor="#FFF"
+        app:ms_hintColor="#FFF"
+        app:ms_arrowColor="#FFF"
+        android:background="#FFFFFF"
+        app:ms_thickness=".5dp"
+        app:ms_arrowSize="16dp"
+        app:ms_alignLabels="false"
+        android:backgroundTint="#FFF"
+        android:popupBackground="#673AB7" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/submit"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rectet"
+        android:gravity="center"
+        android:typeface="serif"
+        android:padding="12dp"
+        android:hint="Book"
+        android:textColorHint="#fff"
+        android:textSize="16dp"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>
