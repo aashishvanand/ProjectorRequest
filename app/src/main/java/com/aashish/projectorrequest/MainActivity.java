@@ -7,12 +7,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +27,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private EditText editTextId;
+    private Button buttonGet;
+    private TextView textViewResult;
 
     private ProgressDialog pDialog;
     TextView textView;
@@ -34,7 +41,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        editTextId = (EditText) findViewById(R.id.editTextId);
+        buttonGet = (Button) findViewById(R.id.buttonGet);
+        textViewResult = (TextView) findViewById(R.id.textViewResult);
 
+        buttonGet.setOnClickListener(this);
         textView = (TextView) findViewById(R.id.json);
         getdata();
     }
@@ -64,6 +75,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void getdata()
     {
+        String id = editTextId.getText().toString().trim();
+        if (id.equals("")) {
+            Toast.makeText(this, "Please enter an id", Toast.LENGTH_LONG).show();
+            return;
+        }
+        pDialog = ProgressDialog.show(this,"Please wait...","Fetching...",false,false);
+
+        String url = Config.DATA_URL+editTextId.getText().toString().trim();
+
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                pDialog.dismiss();
+//                showJSON(response);
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this,error.getMessage().toString(),Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
         // Tag used to cancel the request
         pDialog = new ProgressDialog(this);
         pDialog.setTitle("Get Data");
