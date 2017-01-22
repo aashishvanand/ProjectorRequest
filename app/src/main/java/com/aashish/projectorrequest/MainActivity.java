@@ -2,115 +2,70 @@ package com.aashish.projectorrequest;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
+import android.provider.Settings;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    java.sql.Time timeValue;
-    SimpleDateFormat format;
-    Calendar c;
-    int year, month, day;
-    SimpleDateFormat formatter;
-
-
-    private Calendar calendar;
-    private EditText dateView;
-
-
-    private EditText date1;
-    private Button buttonGet;
-    private TextView textViewResult;
+public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog pDialog;
-    TextView textView;
+    CoordinatorLayout coordinatorLayoutMainActivity;
+    Snackbar SnackbarMainActivity;
+    SessionManager session;
+    TextView hour1header,hour2header,hour3header,hour4header,hour5header,hour6header,hour7header,hour8header;
+    TextView hour1,hour2,hour3,hour4,hour5,hour6,hour7,hour8;
+
     ArrayList<String> hourArray = new ArrayList<String>();
     ArrayList<String> staffcodeArray = new ArrayList<String>();
     ArrayList<String> projectorArray = new ArrayList<String>();
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        c = Calendar.getInstance();
-        year = c.get(Calendar.YEAR);
-        month = c.get(Calendar.MONTH);
-        day = c.get(Calendar.DAY_OF_MONTH);
-        date1 = (EditText) findViewById(R.id.date);
-        buttonGet = (Button) findViewById(R.id.buttonGet);
-        textViewResult = (TextView) findViewById(R.id.textViewResult);
 
-        date1.setOnClickListener(this);
-        buttonGet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getdata();
-            }
-        });
-        textView = (TextView) findViewById(R.id.json);
+        hour1 = (TextView) findViewById(R.id.hour1);
+        hour2 = (TextView) findViewById(R.id.hour2);
+        hour3 = (TextView) findViewById(R.id.hour3);
+        hour4 = (TextView) findViewById(R.id.hour4);
+        hour5 = (TextView) findViewById(R.id.hour5);
+        hour6 = (TextView) findViewById(R.id.hour6);
+        hour7 = (TextView) findViewById(R.id.hour7);
+        hour8 = (TextView) findViewById(R.id.hour8);
+
+        hour1header = (TextView) findViewById(R.id.hour1header);
+        hour2header = (TextView) findViewById(R.id.hour2header);
+        hour3header = (TextView) findViewById(R.id.hour3header);
+        hour4header = (TextView) findViewById(R.id.hour4header);
+        hour5header = (TextView) findViewById(R.id.hour5header);
+        hour6header = (TextView) findViewById(R.id.hour6header);
+        hour7header = (TextView) findViewById(R.id.hour7header);
+        hour8header = (TextView) findViewById(R.id.hour8header);
+
+        coordinatorLayoutMainActivity = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutMainActivity);
+        pDialog = new ProgressDialog(this);
+        pDialog.setTitle(getString(R.string.get));
+
         getdata();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-        date1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get Current Date
 
-                CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment();
-                cdp.show(com.aashish.projectorrequest.MainActivity.this.getSupportFragmentManager(), "Material Calendar Example");
-                cdp.setOnDateSetListener(new CalendarDatePickerDialogFragment.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
-                        try {
-                            formatter = new SimpleDateFormat("yyyy-MM-dd");
-                            String dateInString = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                            Date date = formatter.parse(dateInString);
-
-                            date1.setText(formatter.format(date).toString());
-                        } catch (Exception ex) {
-                            date1.setText(ex.getMessage().toString());
-                        }
-                    }
-                });
-            }
-        });
     }
 
     @Override
@@ -133,50 +88,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
 
+        if (id == R.id.logout) {
+            session.setLogin(false);
+            startActivity(new Intent(this, com.aashish.projectorrequest.Login.class));
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
     private void getdata() {
-        String id = date1.getText().toString().trim();
-        if (id.equals("")) {
-            Toast.makeText(this, "Please enter an id", Toast.LENGTH_LONG).show();
-            return;
-        }
-        pDialog = ProgressDialog.show(this, "Please wait...", "Fetching...", false, false);
-        String url = Config.DATA_URL;
+        String tag_string_req = "load_timetable";
 
-//        + date1.getText().toString().trim();
-
-        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                pDialog.dismiss();
-                showJSON(response);
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
-                    }
-                });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-        // Tag used to cancel the request
-        pDialog = new ProgressDialog(this);
-        pDialog.setTitle("Get Data");
-        pDialog.setCancelable(false);
-        String tag_string_req = "get_data";
-
-        pDialog.setMessage("Get Data");
         showDialog();
 
-       /* StringRequest strReq = new StringRequest(Request.Method.POST,
-                BuildConfig.URL_get, new Response.Listener<String>() {
+        StringRequest strReq = new StringRequest(com.android.volley.Request.Method.POST,
+                BuildConfig.URL_get, new com.android.volley.Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
+
                 hideDialog();
 
                 try {
@@ -184,58 +115,140 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     boolean error = jObj.getBoolean("error");
                     // Check for error node in json
                     if (!error) {
-                        JSONArray hour = jObj.getJSONArray("hour");
-                        JSONArray staffcode = jObj.getJSONArray("staffcode");
-                        JSONArray projector = jObj.getJSONArray("projector");
+                        JSONArray hourJSONArray = jObj.getJSONArray("hour");
+                        JSONArray staffcodeJSONArray = jObj.getJSONArray("staffcode");
+                        JSONArray projectorJSONArray = jObj.getJSONArray("projector");
 
-                        for (int len = 0; len < hour.length(); len++) {
-                            //use these to inflate the list
-                            hourArray.add(hour.toString());
-                            staffcodeArray.add(staffcode.toString());
-                            projectorArray.add(projector.toString());
+                        for (int i = 0; i < hourJSONArray.length(); i++) {
+                            hourArray.add(hourJSONArray.getString(i));
+                            staffcodeArray.add(staffcodeJSONArray.getString(i));
+                            projectorArray.add(projectorJSONArray.getString(i));
                         }
 
+                        String hour;
+                        String text1="",text2="",text3="",text4="",text5="",text6="",text7="",text8="";
+                        for (int i = 0; i < hourArray.size(); i++) {
+                            hour = hourArray.get(i);
+                            switch (hour)
+                            {
+                                case "1":
+                                    text1 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    break;
+                                case "2":
+                                    text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    break;
+                                case "3":
+                                    text3 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    break;
+                                case "4":
+                                    text4 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    break;
+                                case "5":
+                                    text5 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    break;
+                                case "6":
+                                    text6 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    break;
+                                case "7":
+                                    text7 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    break;
+                                case "8":
+                                    text8 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    break;
+                            }
+                        }
+
+                        if(!text1.equals(""))
+                        {
+                            hour1header.setVisibility(View.VISIBLE);
+                            hour1.setText(text1);
+                            hour1.setVisibility(View.VISIBLE);
+                        }
+
+                        if(!text2.equals(""))
+                        {
+                            hour2header.setVisibility(View.VISIBLE);
+                            hour2.setText(text2);
+                            hour2.setVisibility(View.VISIBLE);
+                        }
+
+                        if(!text3.equals(""))
+                        {
+                            hour3header.setVisibility(View.VISIBLE);
+                            hour3.setText(text3);
+                            hour3.setVisibility(View.VISIBLE);
+                        }
+                        if(!text4.equals(""))
+                        {
+                            hour4header.setVisibility(View.VISIBLE);
+                            hour4.setText(text4);
+                            hour4.setVisibility(View.VISIBLE);
+                        }
+
+                        if(!text5.equals(""))
+                        {
+                            hour5header.setVisibility(View.VISIBLE);
+                            hour5.setText(text5);
+                            hour5.setVisibility(View.VISIBLE);
+                        }
+                        if(!text6.equals(""))
+                        {
+                            hour6header.setVisibility(View.VISIBLE);
+                            hour6.setText(text6);
+                            hour6.setVisibility(View.VISIBLE);
+                        }
+
+                        if(!text7.equals(""))
+                        {
+                            hour7header.setVisibility(View.VISIBLE);
+                            hour7.setText(text1);
+                            hour7.setVisibility(View.VISIBLE);
+                        }
+
+                        if(!text8.equals(""))
+                        {
+                            hour8header.setVisibility(View.VISIBLE);
+                            hour8.setText(text1);
+                            hour8.setVisibility(View.VISIBLE);
+                        }
 
                     } else {
                         // Error in login. Get the error message
-                        Toast.makeText(getApplicationContext(),
-                                "Data not found!", Toast.LENGTH_LONG).show();
+                        String errorMsg = jObj.getString("error_msg");
+                        SnackbarMainActivity = Snackbar
+                                .make(coordinatorLayoutMainActivity, errorMsg, Snackbar.LENGTH_SHORT);
+                        SnackbarMainActivity.show();
                     }
                 } catch (JSONException e) {
                     // JSON error
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Unknown Error", Toast.LENGTH_LONG).show();
+                    SnackbarMainActivity = Snackbar
+                            .make(coordinatorLayoutMainActivity, e.toString(), Snackbar.LENGTH_SHORT);
+                    SnackbarMainActivity.show();
                 }
-
             }
-        }, new Response.ErrorListener() {
+        }, new com.android.volley.Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();
+                SnackbarMainActivity = Snackbar
+                        .make(coordinatorLayoutMainActivity, error.getMessage(), Snackbar.LENGTH_SHORT);
+                SnackbarMainActivity.show();
             }
-        });
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);*/
-    }
+        }){
 
-    private void showJSON(String response) {
-        String hour="";
-        String staffcode="";
-        String projector = "";
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray(Config.JSON_ARRAY);
-            JSONObject request = result.getJSONObject(0);
-            hour = request.getString(Config.KEY_NAME);
-            staffcode = request.getString(Config.KEY_ADDRESS);
-            projector = request.getString(Config.KEY_VC);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        textViewResult.setText("Hour:\t"+hour+"\nStaffCode:\t" +staffcode+ "\n Projector:\t"+ projector);
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("androidid", Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID));
+
+                return params;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
     }
 
     private void showDialog() {
@@ -246,46 +259,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
-
-    @Override
-    public void onClick(View view) {
-        getdata();
     }
 }

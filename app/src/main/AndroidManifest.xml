@@ -18,8 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Request" />
+
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/timetable"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Request"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/request"
+            android:screenOrientation="portrait"/>
+
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.

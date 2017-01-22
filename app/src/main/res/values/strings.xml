@@ -21,4 +21,22 @@
         <item>hp</item>
         <item>hitachi</item>
     </string-array>
+
+    <string name="request">Request</string>
+    <string name="timetable">Timetable</string>
+    <string name="wrong_user_or_password_combination">wrong_user_or_password_combination</string>
+    <string name="login">Logging in..</string>
+    <string name="logout">Logout</string>
+    <string name="issue">Sorry! Connectivity Issue</string>
+    <string name="get">Getting Timetable</string>
+
+    <string name="hour1">Hour 1</string>
+    <string name="hour2">Hour 2</string>
+    <string name="hour3">Hour 3</string>
+    <string name="hour4">Hour 4</string>
+    <string name="hour5">Hour 5</string>
+    <string name="hour6">Hour 6</string>
+    <string name="hour7">Hour 7</string>
+    <string name="hour8">Hour 8</string>
+
 </resources>
