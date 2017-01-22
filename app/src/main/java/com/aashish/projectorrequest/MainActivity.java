@@ -75,14 +75,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonGet = (Button) findViewById(R.id.buttonGet);
         textViewResult = (TextView) findViewById(R.id.textViewResult);
 
-        buttonGet.setOnClickListener(this);
+        date1.setOnClickListener(this);
+        buttonGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getdata();
+            }
+        });
         textView = (TextView) findViewById(R.id.json);
         getdata();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-        buttonGet.setOnClickListener(new View.OnClickListener() {
+        date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Get Current Date
@@ -137,8 +143,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         pDialog = ProgressDialog.show(this, "Please wait...", "Fetching...", false, false);
+        String url = Config.DATA_URL;
 
-        String url = Config.DATA_URL + date1.getText().toString().trim();
+//        + date1.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -165,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pDialog.setMessage("Get Data");
         showDialog();
 
-        StringRequest strReq = new StringRequest(Request.Method.POST,
+       /* StringRequest strReq = new StringRequest(Request.Method.POST,
                 BuildConfig.URL_get, new Response.Listener<String>() {
 
             @Override
@@ -211,24 +218,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 hideDialog();
             }
         });
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);*/
     }
 
     private void showJSON(String response) {
-        String name="";
-        String address="";
-        String vc = "";
+        String hour="";
+        String staffcode="";
+        String projector = "";
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray result = jsonObject.getJSONArray(Config.JSON_ARRAY);
-            JSONObject collegeData = result.getJSONObject(0);
-            name = collegeData.getString(Config.KEY_NAME);
-            address = collegeData.getString(Config.KEY_ADDRESS);
-            vc = collegeData.getString(Config.KEY_VC);
+            JSONObject request = result.getJSONObject(0);
+            hour = request.getString(Config.KEY_NAME);
+            staffcode = request.getString(Config.KEY_ADDRESS);
+            projector = request.getString(Config.KEY_VC);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        textViewResult.setText("Name:\t"+name+"\nAddress:\t" +address+ "\nVice Chancellor:\t"+ vc);
+        textViewResult.setText("Hour:\t"+hour+"\nStaffCode:\t" +staffcode+ "\n Projector:\t"+ projector);
     }
 
     private void showDialog() {

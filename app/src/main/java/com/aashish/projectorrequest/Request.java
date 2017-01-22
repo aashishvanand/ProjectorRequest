@@ -2,16 +2,22 @@ package com.aashish.projectorrequest;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
+import android.renderscript.Sampler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -31,20 +37,24 @@ import java.util.Map;
 
 import fr.ganfra.materialspinner.MaterialSpinner;
 
+
+
 public class Request extends AppCompatActivity  {
 
+
+    private SharedPreferences prefsPrivate;
     java.sql.Time timeValue;
     SimpleDateFormat format;
     Calendar c;
     int year, month, day;
     SimpleDateFormat formatter;
 
-
     private Calendar calendar;
     private EditText dateView;
 
     private ProgressDialog pDialog;
-    EditText date1, hour, staffcode, projector;
+    EditText date1, hour, projector;
+    EditText staffcode;
     MaterialSpinner spinner, spinner1;
     String[] period = {"1", "2", "3", "4", "5", "6", "7", "8"};
     String[] project = {"canon", "dell", "epson", "hp", "hitachi"};
@@ -59,11 +69,15 @@ public class Request extends AppCompatActivity  {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
+        prefsPrivate = getSharedPreferences(Login.PREFS_PRIVATE, Context.MODE_PRIVATE);
+       staffcode = (EditText) findViewById(R.id.staffcode);
+
+        staffcode.setText(prefsPrivate.getString(Login.KEY_PRIVATE, "NA"));
+
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
         date1 = (EditText) findViewById(R.id.date);
-        staffcode = (EditText) findViewById(R.id.staffcode);
         submit = (Button) findViewById(R.id.submit);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, period);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -76,6 +90,7 @@ public class Request extends AppCompatActivity  {
         spinner.setAdapter(adapter);
         spinner.setHint("Select period");
         spinner1.setHint("Select projector");
+
 
 
         // Create an ArrayAdapter using the string array and a default spinner
@@ -121,6 +136,7 @@ public class Request extends AppCompatActivity  {
 
 
     }
+
 
     private void requestdata() {
         // Tag used to cancel the request

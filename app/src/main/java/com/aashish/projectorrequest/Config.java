@@ -5,9 +5,10 @@ package com.aashish.projectorrequest;
  */
 
 public class Config {
-    public static final String DATA_URL = "http://192.168.94.1/Android/College/getData.php?id=";
-    public static final String KEY_NAME = "name";
-    public static final String KEY_ADDRESS = "address";
-    public static final String KEY_VC = "vc";
+    public static final String DATA_URL = "http://aashish.noip.me/projector/index.php?date=2017-01-22";
+    public static final String KEY_DATE = "date";
+    public static final String KEY_NAME = "hour";
+    public static final String KEY_ADDRESS = "staffcode";
+    public static final String KEY_VC = "projector";
     public static final String JSON_ARRAY = "result";
 }
