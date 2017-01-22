@@ -22,7 +22,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "R0TeSD0aL@!";
+$password = "**********";
 $dbname = "projector";
 
 // Create connection
