@@ -24,7 +24,6 @@ $servername = "localhost";
 $username = "root";
 $password = "*******";
 $dbname = "projector";
-
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
@@ -36,7 +35,6 @@ $thisweek = date('Y-m-d', strtotime('+7 days'));
 $sql = "SELECT DISTINCT date FROM request WHERE (date BETWEEN '$today' AND '$thisweek') order by date asc";
 $result = mysqli_query($conn, $sql);
 echo '<h1>Projector Request</h1>';
-
 if (mysqli_num_rows($result) > 0) { 
 echo '<div style="overflow-x:auto;">';
 echo "<table align='center'><tr><th>Date</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>";
@@ -47,9 +45,9 @@ echo "<table align='center'><tr><th>Date</th><th>1</th><th>2</th><th>3</th><th>4
 	$date= $row['date'];
 	$sql_date_fetch = "SELECT * FROM request WHERE date='$date'";
 	$result_date = mysqli_query($conn, $sql_date_fetch);
-
 	while($row_date = mysqli_fetch_assoc($result_date)) {
-		$hours[$row_date['hour']-1]='Booked By '.$row_date['staffcode'];
+		if(strcmp($hours[$row_date['hour']-1], 'AVAIL')==0)$hours[$row_date['hour']-1]='-'.$row_date['projector'].' Booked By '.$row_date['staffcode'].'-';
+		else $hours[$row_date['hour']-1] .='-'.$row_date['projector'].' Booked By '.$row_date['staffcode'].'-';
 	}
 	$new_table_row = '<tr><th>'.$row['date'].'</th>';
 	foreach($hours as $hour){
@@ -64,7 +62,6 @@ echo "<table align='center'><tr><th>Date</th><th>1</th><th>2</th><th>3</th><th>4
 }
 echo '</table>';
 echo '<div>';
-
 mysqli_close($conn);
 ?>
 
