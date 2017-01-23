@@ -52,7 +52,7 @@ public class Request extends AppCompatActivity  {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-        coordinatorLayoutRequest = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutLogin);
+        coordinatorLayoutRequest = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutRequest);
         c = Calendar.getInstance();
         SharedPreferences prefs = getSharedPreferences(PREF, MODE_PRIVATE);
         code = prefs.getString("code", null);
@@ -75,6 +75,9 @@ public class Request extends AppCompatActivity  {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //do validation here for the values
+                //check for date cannot make request for previous date
+                //check for all other fields for null and correct values and fix it before calling request data function
                 requestdata();
             }
         });
