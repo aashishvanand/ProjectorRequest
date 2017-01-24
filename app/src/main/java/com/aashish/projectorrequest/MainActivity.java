@@ -55,20 +55,15 @@ public class MainActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         Date day1_date = calendar.getTime();
-
         calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date day2_date = calendar.getTime();
-
-        calendar.add(Calendar.DAY_OF_YEAR, 2);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date day3_date = calendar.getTime();
-
-        calendar.add(Calendar.DAY_OF_YEAR, 3);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date day4_date = calendar.getTime();
-
-        calendar.add(Calendar.DAY_OF_YEAR, 4);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date day5_date = calendar.getTime();
-
-        calendar.add(Calendar.DAY_OF_YEAR, 5);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         Date day6_date = calendar.getTime();
 
 

@@ -59,5 +59,6 @@
     <string name="hour6">Hour 6</string>
     <string name="hour7">Hour 7</string>
     <string name="hour8">Hour 8</string>
+    <string name="yyyy_mm_dd">yyyy-mm-dd</string>
 
 </resources>

@@ -138,25 +138,25 @@ public class DetailedView extends AppCompatActivity {
                                     text1 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
                                     break;
                                 case "2":
-                                    text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
                                     break;
                                 case "3":
-                                    text3 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    text3 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
                                     break;
                                 case "4":
-                                    text4 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    text4 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
                                     break;
                                 case "5":
-                                    text5 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    text5 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
                                     break;
                                 case "6":
-                                    text6 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    text6 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
                                     break;
                                 case "7":
-                                    text7 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    text7 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
                                     break;
                                 case "8":
-                                    text8 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i);
+                                    text8 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
                                     break;
                             }
                         }
