@@ -42,7 +42,7 @@ public class DetailedView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_detailedview);
 
         hour1 = (TextView) findViewById(R.id.hour1);
         hour2 = (TextView) findViewById(R.id.hour2);
@@ -66,7 +66,7 @@ public class DetailedView extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setTitle(getString(R.string.get));
 
-        getdata();
+        getdata(getIntent().getStringExtra("date"));
 
 
     }
@@ -100,7 +100,7 @@ public class DetailedView extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getdata() {
+    private void getdata(final String date) {
         String tag_string_req = "load_timetable";
 
         showDialog();
@@ -244,8 +244,7 @@ public class DetailedView extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
-                params.put("androidid", Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID));
-
+                params.put("date", date);
                 return params;
             }
         };
