@@ -27,9 +27,9 @@
             android:name=".Request"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/request"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".DetailedView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DetailedView"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/request"
             android:screenOrientation="portrait" />
@@ -42,6 +42,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity android:name=".DeleteRequest"></activity>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 public class DetailedView extends AppCompatActivity {
 
+    private FloatingActionButton fab;
     private ProgressDialog pDialog;
     CoordinatorLayout coordinatorLayoutMainActivity;
     Snackbar SnackbarMainActivity;
@@ -63,9 +65,18 @@ public class DetailedView extends AppCompatActivity {
 
         coordinatorLayoutMainActivity = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutMainActivity);
         pDialog = new ProgressDialog(this);
-        pDialog.setTitle(getString(R.string.get));
+        pDialog.setCancelable(false);
 
         getdata(getIntent().getStringExtra("date"));
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailedView.this, Request.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -85,8 +96,8 @@ public class DetailedView extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_Makerequest) {
-            startActivity(new Intent(this, com.aashish.projectorrequest.Request.class));
+        if (id == R.id.delete_request) {
+            startActivity(new Intent(this, com.aashish.projectorrequest.DeleteRequest.class));
             return true;
         }
 
@@ -101,6 +112,7 @@ public class DetailedView extends AppCompatActivity {
 
     private void getdata(final String date) {
         String tag_string_req = "load_timetable";
+        pDialog.setMessage("Loading TimeTable");
 
         showDialog();
 
