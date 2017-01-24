@@ -98,6 +98,7 @@ public class Request extends AppCompatActivity  {
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat mdformat = new SimpleDateFormat("yyyy / MM / dd ");
                 String strDate = mdformat.format(calendar.getTime());
+
                 Date today = calendar.getTime();
                 try {
                     Date current_date = formatter.parse(strDate);
@@ -116,19 +117,15 @@ public class Request extends AppCompatActivity  {
                 String YEar = YEAR.getSelectedItem().toString();
                 String Sec = SEC.getSelectedItem().toString();
                 String projector = spinner1.getSelectedItem().toString();
+
                 if (period.equalsIgnoreCase("Select period") ||projector.equalsIgnoreCase("Select projector") || dept.equalsIgnoreCase("Select Dept")|| Sec.equalsIgnoreCase("Select Section")||YEar.equalsIgnoreCase("Select Year")||date1.equals("")) {
                     SnackbarRequest = Snackbar
-                            .make(coordinatorLayoutRequest, "Select Period,Select Projector,Select year,Select Dept and Select Section", Snackbar.LENGTH_SHORT);
+                            .make(coordinatorLayoutRequest, "Please Check your Selection", Snackbar.LENGTH_SHORT);
                     SnackbarRequest.show();
                 }
                 else {
-                    requestdata();
+                    requestdata(period,projector,dept,YEar,Sec);
                 }
-
-                //do validation here for the values
-                //check for date cannot make request for previous date
-                //check for all other fields for null and correct values and fix it before calling request data function
-
             }
         });
 
@@ -158,16 +155,10 @@ public class Request extends AppCompatActivity  {
 
     }
 
-    public void getCurrentDate(View view) {
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("yyyy / MM / dd ");
-        String strDate = mdformat.format(calendar.getTime());
-    }
-
-    private void requestdata() {
+    private void requestdata(final String period, final String projector, final String dept, final String YEar, final String sec) {
         // Tag used to cancel the request
-        String tag_string_req = "get_data";
-        pDialog.setMessage("Get Data");
+        String tag_string_req = "req_proj";
+        pDialog.setMessage("Requesting Projector");
         showDialog();
 
         final StringRequest strReq = new StringRequest(com.android.volley.Request.Method.POST,
@@ -189,14 +180,12 @@ public class Request extends AppCompatActivity  {
                         startActivity(i);
 
                     } else {
-                        // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");
                         SnackbarRequest = Snackbar
                                 .make(coordinatorLayoutRequest, errorMsg, Snackbar.LENGTH_SHORT);
                         SnackbarRequest.show();
                     }
                 } catch (JSONException e) {
-                    // JSON error
                     e.printStackTrace();
                     SnackbarRequest = Snackbar
                             .make(coordinatorLayoutRequest, getString(R.string.wrong_user_or_password_combination), Snackbar.LENGTH_SHORT);
@@ -221,10 +210,14 @@ public class Request extends AppCompatActivity  {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
                 params.put("date", date1.getText().toString());
-                params.put("hour", spinner.getSelectedItem().toString());
+                params.put("hour", period);
                 //params.put("staffcode", code);
                 params.put("staffcode", "cs11");
-                params.put("projector", spinner1.getSelectedItem().toString());
+                params.put("projector", projector);
+                params.put("department", dept);
+                params.put("year",YEar);
+                params.put("section",sec);
+
 
                 return params;
             }
