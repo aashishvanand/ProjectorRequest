@@ -58,6 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:textSize="40sp"
+                        android:layout_marginBottom="15dp"
                         android:textColor="@color/white"/>
                 </LinearLayout>
 
@@ -106,6 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:textSize="40sp"
+                        android:layout_marginBottom="15dp"
                         android:textColor="@color/white"/>
 
 
@@ -166,6 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:textSize="40sp"
+                        android:layout_marginBottom="15dp"
                         android:textColor="@color/white"/>
 
                 </LinearLayout>
@@ -215,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:textSize="40sp"
+                        android:layout_marginBottom="15dp"
                         android:textColor="@color/white"/>
 
                 </LinearLayout>
@@ -271,6 +275,7 @@
                         android:id="@+id/day5_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
                         android:layout_gravity="center_horizontal"
                         android:textSize="50dp"
                         android:textColor="@color/white"/>
@@ -321,6 +326,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:textSize="40sp"
+                        android:layout_marginBottom="15dp"
                         android:textColor="@color/white"/>
 
                 </LinearLayout>

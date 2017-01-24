@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Projector Request</string>
     <string name="MakeRequest">Make Request</string>
+
     <string-array name="period">
         <item>Select period</item>
         <item>1</item>
@@ -21,6 +22,26 @@
         <item>hp</item>
         <item>hitachi</item>
     </string-array>
+    <string-array name="Year">
+        <item>Select Year</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="dept">
+        <item>Select Dept</item>
+        <item>CSE</item>
+        <item>Mech</item>
+    </string-array>
+    <string-array name="sec">
+        <item>Select Section</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+
 
     <string name="request">Request</string>
     <string name="timetable">Timetable</string>

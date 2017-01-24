@@ -7,6 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <LinearLayout
     android:id="@+id/activity_request"
     android:layout_width="match_parent"
@@ -77,6 +80,66 @@
         app:ms_alignLabels="false"
         android:backgroundTint="#FFF"
         android:popupBackground="@color/colorAccent" />
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:ms_errorColor="@color/error"
+        app:ms_multiline="false"
+        app:ms_hint="hint"
+        app:ms_enableFloatingLabel="false"
+        app:ms_enableErrorLabel="false"
+        android:layout_gravity="center"
+        app:ms_floatingLabelColor="#FFF"
+        app:ms_hintColor="#FFF"
+        app:ms_arrowColor="#FFF"
+        android:background="#FFFFFF"
+        app:ms_thickness=".5dp"
+        app:ms_arrowSize="16dp"
+        app:ms_alignLabels="false"
+        android:backgroundTint="#FFF"
+        android:popupBackground="@color/colorAccent" />
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/dept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:ms_errorColor="@color/error"
+        app:ms_multiline="false"
+        app:ms_hint="hint"
+        app:ms_enableFloatingLabel="false"
+        app:ms_enableErrorLabel="false"
+        android:layout_gravity="center"
+        app:ms_floatingLabelColor="#FFF"
+        app:ms_hintColor="#FFF"
+        app:ms_arrowColor="#FFF"
+        android:background="#FFFFFF"
+        app:ms_thickness=".5dp"
+        app:ms_arrowSize="16dp"
+        app:ms_alignLabels="false"
+        android:backgroundTint="#FFF"
+        android:popupBackground="@color/colorAccent" />
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/sec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:ms_errorColor="@color/error"
+        app:ms_multiline="false"
+        app:ms_hint="hint"
+        app:ms_enableFloatingLabel="false"
+        app:ms_enableErrorLabel="false"
+        android:layout_gravity="center"
+        app:ms_floatingLabelColor="#FFF"
+        app:ms_hintColor="#FFF"
+        app:ms_arrowColor="#FFF"
+        android:background="#FFFFFF"
+        app:ms_thickness=".5dp"
+        app:ms_arrowSize="16dp"
+        app:ms_alignLabels="false"
+        android:backgroundTint="#FFF"
+        android:popupBackground="@color/colorAccent" />
 
     <Button
         android:id="@+id/submit"
@@ -95,4 +158,5 @@
         tools:ignore="HardcodedText" />
 
 </LinearLayout>
+</ScrollView>
 </android.support.design.widget.CoordinatorLayout>

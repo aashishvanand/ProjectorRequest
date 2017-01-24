@@ -18,13 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/timetable"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".Request"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Request"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/request"
             android:screenOrientation="portrait"/>
@@ -32,7 +32,7 @@
         <activity android:name=".DetailedView"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/request"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -41,7 +41,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
     </application>
 
