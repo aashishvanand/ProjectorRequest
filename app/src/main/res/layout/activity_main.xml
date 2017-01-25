@@ -1,6 +1,7 @@
-<ScrollView android:layout_height="fill_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:layout_height="fill_parent">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,9 +29,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
-                    android:adjustViewBounds="true"
                     android:layout_marginRight="5dp"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/square" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -41,25 +43,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="center"
                         android:layout_marginTop="10dp"
-                        android:textSize="40sp"
-                        android:textColor="@color/white"/>
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+
                     <TextView
                         android:id="@+id/day1_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="75sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="75sp" />
+
                     <TextView
                         android:id="@+id/day1_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="40sp"
                         android:layout_marginBottom="15dp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -78,37 +82,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
-                    android:adjustViewBounds="true"
                     android:layout_marginLeft="5dp"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/square" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/day2_month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="center"
                         android:layout_marginTop="10dp"
-                        android:textSize="40sp"
-                        android:textColor="@color/white"/>
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+
                     <TextView
                         android:id="@+id/day2_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="75sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="75sp" />
+
                     <TextView
                         android:id="@+id/day2_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="40sp"
                         android:layout_marginBottom="15dp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
 
 
                 </LinearLayout>
@@ -138,38 +146,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
+                    android:layout_marginRight="5dp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/square"
-                    android:layout_marginRight="5dp"/>
+                    android:src="@drawable/square" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/day3_month"
-                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:textSize="40sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+
                     <TextView
                         android:id="@+id/day3_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="75sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="75sp" />
+
                     <TextView
                         android:id="@+id/day3_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="40sp"
                         android:layout_marginBottom="15dp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
 
                 </LinearLayout>
 
@@ -188,38 +199,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
+                    android:layout_marginLeft="5dp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/square"
-                    android:layout_marginLeft="5dp"/>
+                    android:src="@drawable/square" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/day4_month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="center"
                         android:layout_marginTop="10dp"
-                        android:textSize="40sp"
-                        android:textColor="@color/white"/>
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+
                     <TextView
                         android:id="@+id/day4_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="75sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="75sp" />
+
                     <TextView
                         android:id="@+id/day4_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="40sp"
                         android:layout_marginBottom="15dp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -247,38 +261,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
-                    android:adjustViewBounds="true"
                     android:layout_marginRight="5dp"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/square" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/day5_month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="center"
                         android:layout_marginTop="10dp"
-                        android:textSize="40sp"
-                        android:textColor="@color/white"/>
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+
                     <TextView
                         android:id="@+id/day5_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="75sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="75sp" />
+
                     <TextView
                         android:id="@+id/day5_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="50dp"
-                        android:textColor="@color/white"/>
+                        android:layout_marginBottom="15dp"
+                        android:textColor="@color/white"
+                        android:textSize="50dp" />
 
                 </LinearLayout>
 
@@ -297,37 +314,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
-                    android:adjustViewBounds="true"
                     android:layout_marginLeft="5dp"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/square" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/day6_month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:gravity="center"
                         android:layout_marginTop="10dp"
-                        android:textSize="40sp"
-                        android:textColor="@color/white"/>
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
+
                     <TextView
                         android:id="@+id/day6_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="75sp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="75sp" />
+
                     <TextView
                         android:id="@+id/day6_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textSize="40sp"
                         android:layout_marginBottom="15dp"
-                        android:textColor="@color/white"/>
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
 
                 </LinearLayout>
 

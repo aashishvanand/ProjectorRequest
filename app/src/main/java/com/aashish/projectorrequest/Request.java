@@ -3,16 +3,15 @@ package com.aashish.projectorrequest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -21,7 +20,6 @@ import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialo
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,24 +29,24 @@ import java.util.Map;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
 
-public class Request extends AppCompatActivity  {
+public class Request extends AppCompatActivity {
 
+    public static final String PREF = "Projectrequest";
     Calendar c;
     int year, month, day;
     SimpleDateFormat formatter;
     String code;
-    private ProgressDialog pDialog;
     EditText date1;
-    MaterialSpinner spinner, spinner1,YEAR,DEPT,SEC;
+    MaterialSpinner spinner, spinner1, YEAR, DEPT, SEC;
     String[] period = {"1", "2", "3", "4", "5", "6", "7", "8"};
-    String[] YEar = {"1","2","3","4"};
-    String[] DEpt = {"CSE","MECH"};
-    String[] SEc = {"A","B","C","D"};
-    String[] project = {"Canon", "Dell", "Epson", "Hp", "Hitachi","ViewSonic"};
+    String[] YEar = {"1", "2", "3", "4"};
+    String[] DEpt = {"CSE", "MECH"};
+    String[] SEc = {"A", "B", "C", "D"};
+    String[] project = {"Canon", "Dell", "Epson", "Hp", "Hitachi", "ViewSonic"};
     Button submit;
     Snackbar SnackbarRequest;
-    public static final String PREF = "Projectrequest";
     CoordinatorLayout coordinatorLayoutRequest;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +59,12 @@ public class Request extends AppCompatActivity  {
         c = Calendar.getInstance();
         SharedPreferences prefs = getSharedPreferences(PREF, MODE_PRIVATE);
         code = prefs.getString("code", null);
+
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, period);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, project);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final ArrayAdapter<String> Year = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item,YEar);
+        final ArrayAdapter<String> Year = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, YEar);
         Year.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final ArrayAdapter<String> dept = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, DEpt);
         dept.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -86,32 +85,16 @@ public class Request extends AppCompatActivity  {
         DEPT.setHint("Select Dept");
         SEC.setHint("Select Section");
         spinner1.setHint("Select projector");
+
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
         date1 = (EditText) findViewById(R.id.date);
         submit = (Button) findViewById(R.id.submit);
 
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat mdformat = new SimpleDateFormat("yyyy / MM / dd ");
-                String strDate = mdformat.format(calendar.getTime());
-
-                Date today = calendar.getTime();
-                try {
-                    Date current_date = formatter.parse(strDate);
-                    Date user_date = formatter.parse(String.valueOf(date1));
-                    if(today.compareTo(user_date)>0){
-                        Toast.makeText(getApplicationContext(),"OUT",Toast.LENGTH_SHORT).show();
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),"OUTING",Toast.LENGTH_SHORT).show();
-                }
-
 
                 String period = spinner.getSelectedItem().toString();
                 String dept = DEPT.getSelectedItem().toString();
@@ -119,13 +102,12 @@ public class Request extends AppCompatActivity  {
                 String Sec = SEC.getSelectedItem().toString();
                 String projector = spinner1.getSelectedItem().toString();
 
-                if (period.equalsIgnoreCase("Select period") ||projector.equalsIgnoreCase("Select projector") || dept.equalsIgnoreCase("Select Dept")|| Sec.equalsIgnoreCase("Select Section")||YEar.equalsIgnoreCase("Select Year")||date1.equals("")) {
+                if (period.equalsIgnoreCase("Select period") || projector.equalsIgnoreCase("Select projector") || dept.equalsIgnoreCase("Select Dept") || Sec.equalsIgnoreCase("Select Section") || YEar.equalsIgnoreCase("Select Year") || date1.equals("")) {
                     SnackbarRequest = Snackbar
                             .make(coordinatorLayoutRequest, "Please Check your Selection", Snackbar.LENGTH_SHORT);
                     SnackbarRequest.show();
-                }
-                else {
-                    requestdata(period,projector,dept,YEar,Sec);
+                } else {
+                    requestdata(period, projector, dept, YEar, Sec);
                 }
             }
         });
@@ -136,6 +118,7 @@ public class Request extends AppCompatActivity  {
                 // Get Current Date
                 CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment();
                 cdp.show(Request.this.getSupportFragmentManager(), "Material Calendar Example");
+
                 cdp.setOnDateSetListener(new CalendarDatePickerDialogFragment.OnDateSetListener() {
                     @Override
                     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
@@ -177,7 +160,7 @@ public class Request extends AppCompatActivity  {
                         SnackbarRequest = Snackbar
                                 .make(coordinatorLayoutRequest, "Registered Successfully", Snackbar.LENGTH_SHORT);
                         SnackbarRequest.show();
-                        Intent i =new Intent(Request.this,MainActivity.class);
+                        Intent i = new Intent(Request.this, MainActivity.class);
                         startActivity(i);
 
                     } else {
@@ -216,8 +199,8 @@ public class Request extends AppCompatActivity  {
                 params.put("staffcode", "cs11");
                 params.put("projector", projector);
                 params.put("department", dept);
-                params.put("year",YEar);
-                params.put("section",sec);
+                params.put("year", YEar);
+                params.put("section", sec);
 
 
                 return params;
@@ -235,6 +218,7 @@ public class Request extends AppCompatActivity  {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -243,20 +227,19 @@ public class Request extends AppCompatActivity  {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.delete_request) {
-            Intent i = new Intent(Request.this,DeleteRequest.class);
+        if (id == R.id.delete) {
+            Intent i = new Intent(Request.this, DeleteRequest.class);
             startActivity(i);
             return true;
         }
 
-        if(id == R.id.logout){
-            Intent i = new Intent(Request.this,Login.class);
+        if (id == R.id.logout) {
+            Intent i = new Intent(Request.this, Login.class);
             startActivity(i);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }

@@ -15,10 +15,10 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView day1_imageView,day2_imageView,day3_imageView,day4_imageView,day5_imageView,day6_imageView;
-    TextView day1_day,day2_day,day3_day,day4_day,day5_day,day6_day;
-    TextView day1_month,day2_month,day3_month,day4_month,day5_month,day6_month;
-    TextView day1_year,day2_year,day3_year,day4_year,day5_year,day6_year;
+    ImageView day1_imageView, day2_imageView, day3_imageView, day4_imageView, day5_imageView, day6_imageView;
+    TextView day1_day, day2_day, day3_day, day4_day, day5_day, day6_day;
+    TextView day1_month, day2_month, day3_month, day4_month, day5_month, day6_month;
+    TextView day1_year, day2_year, day3_year, day4_year, day5_year, day6_year;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         day5_imageView = (ImageView) findViewById(R.id.day5_imageView);
         day6_imageView = (ImageView) findViewById(R.id.day6_imageView);
 
-        day1_day =(TextView) findViewById(R.id.day1_day);
-        day2_day =(TextView) findViewById(R.id.day2_day);
-        day3_day =(TextView) findViewById(R.id.day3_day);
-        day4_day =(TextView) findViewById(R.id.day4_day);
-        day5_day =(TextView) findViewById(R.id.day5_day);
-        day6_day =(TextView) findViewById(R.id.day6_day);
+        day1_day = (TextView) findViewById(R.id.day1_day);
+        day2_day = (TextView) findViewById(R.id.day2_day);
+        day3_day = (TextView) findViewById(R.id.day3_day);
+        day4_day = (TextView) findViewById(R.id.day4_day);
+        day5_day = (TextView) findViewById(R.id.day5_day);
+        day6_day = (TextView) findViewById(R.id.day6_day);
 
         day1_month = (TextView) findViewById(R.id.day1_month);
         day2_month = (TextView) findViewById(R.id.day2_month);

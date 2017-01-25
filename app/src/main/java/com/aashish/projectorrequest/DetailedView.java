@@ -29,17 +29,17 @@ import java.util.Map;
 
 public class DetailedView extends AppCompatActivity {
 
-    private FloatingActionButton fab;
-    private ProgressDialog pDialog;
     CoordinatorLayout coordinatorLayoutMainActivity;
     Snackbar SnackbarMainActivity;
     SessionManager session;
-    TextView hour1header,hour2header,hour3header,hour4header,hour5header,hour6header,hour7header,hour8header;
-    TextView hour1,hour2,hour3,hour4,hour5,hour6,hour7,hour8;
-
+    TextView hour1header, hour2header, hour3header, hour4header, hour5header, hour6header, hour7header, hour8header;
+    TextView hour1, hour2, hour3, hour4, hour5, hour6, hour7, hour8;
     ArrayList<String> hourArray = new ArrayList<String>();
     ArrayList<String> staffcodeArray = new ArrayList<String>();
     ArrayList<String> projectorArray = new ArrayList<String>();
+    private FloatingActionButton fab;
+    private ProgressDialog pDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +96,7 @@ public class DetailedView extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.delete_request) {
+        if (id == R.id.delete) {
             startActivity(new Intent(this, com.aashish.projectorrequest.DeleteRequest.class));
             return true;
         }
@@ -140,31 +140,30 @@ public class DetailedView extends AppCompatActivity {
                         }
 
                         String hour;
-                        String text1="",text2="",text3="",text4="",text5="",text6="",text7="",text8="";
+                        String text1 = "", text2 = "", text3 = "", text4 = "", text5 = "", text6 = "", text7 = "", text8 = "";
                         for (int i = 0; i < hourArray.size(); i++) {
                             hour = hourArray.get(i);
-                            switch (hour)
-                            {
+                            switch (hour) {
                                 case "1":
-                                    text1 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    text1 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
                                     break;
                                 case "2":
-                                    text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
                                     break;
                                 case "3":
-                                    text3 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    text3 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
                                     break;
                                 case "4":
-                                    text4 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    text4 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
                                     break;
                                 case "5":
-                                    text5 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    text5 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
                                     break;
                                 case "6":
-                                    text6 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    text6 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
                                     break;
                                 case "7":
-                                    text7 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    text7 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
                                     break;
                                 case "8":
                                     text8 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
@@ -172,55 +171,47 @@ public class DetailedView extends AppCompatActivity {
                             }
                         }
 
-                        if(!text1.equals(""))
-                        {
+                        if (!text1.equals("")) {
                             hour1header.setVisibility(View.VISIBLE);
                             hour1.setText(text1);
                             hour1.setVisibility(View.VISIBLE);
                         }
 
-                        if(!text2.equals(""))
-                        {
+                        if (!text2.equals("")) {
                             hour2header.setVisibility(View.VISIBLE);
                             hour2.setText(text2);
                             hour2.setVisibility(View.VISIBLE);
                         }
 
-                        if(!text3.equals(""))
-                        {
+                        if (!text3.equals("")) {
                             hour3header.setVisibility(View.VISIBLE);
                             hour3.setText(text3);
                             hour3.setVisibility(View.VISIBLE);
                         }
-                        if(!text4.equals(""))
-                        {
+                        if (!text4.equals("")) {
                             hour4header.setVisibility(View.VISIBLE);
                             hour4.setText(text4);
                             hour4.setVisibility(View.VISIBLE);
                         }
 
-                        if(!text5.equals(""))
-                        {
+                        if (!text5.equals("")) {
                             hour5header.setVisibility(View.VISIBLE);
                             hour5.setText(text5);
                             hour5.setVisibility(View.VISIBLE);
                         }
-                        if(!text6.equals(""))
-                        {
+                        if (!text6.equals("")) {
                             hour6header.setVisibility(View.VISIBLE);
                             hour6.setText(text6);
                             hour6.setVisibility(View.VISIBLE);
                         }
 
-                        if(!text7.equals(""))
-                        {
+                        if (!text7.equals("")) {
                             hour7header.setVisibility(View.VISIBLE);
                             hour7.setText(text1);
                             hour7.setVisibility(View.VISIBLE);
                         }
 
-                        if(!text8.equals(""))
-                        {
+                        if (!text8.equals("")) {
                             hour8header.setVisibility(View.VISIBLE);
                             hour8.setText(text1);
                             hour8.setVisibility(View.VISIBLE);
@@ -249,7 +240,7 @@ public class DetailedView extends AppCompatActivity {
                         .make(coordinatorLayoutMainActivity, error.getMessage(), Snackbar.LENGTH_SHORT);
                 SnackbarMainActivity.show();
             }
-        }){
+        }) {
 
             @Override
             protected Map<String, String> getParams() {

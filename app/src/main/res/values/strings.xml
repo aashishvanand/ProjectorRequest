@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Projector Request</string>
-    <string name="DeleteRequest">Delete Request</string>
 
     <string-array name="period">
         <item>Select period</item>
@@ -13,6 +12,7 @@
         <item>7</item>
         <item>8</item>
     </string-array>
+
     <string-array name="period_adapter">
         <item>Select period</item>
         <item>1</item>
@@ -34,6 +34,7 @@
         <item>hp</item>
         <item>hitachi</item>
     </string-array>
+
     <string-array name="Year">
         <item>Select Year</item>
         <item>1</item>
@@ -41,11 +42,13 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+
     <string-array name="dept">
         <item>Select Dept</item>
         <item>CSE</item>
         <item>Mech</item>
     </string-array>
+
     <string-array name="sec">
         <item>Select Section</item>
         <item>A</item>
@@ -53,7 +56,6 @@
         <item>C</item>
         <item>D</item>
     </string-array>
-
 
     <string name="request">Request</string>
     <string name="timetable">Timetable</string>
@@ -72,5 +74,8 @@
     <string name="hour7">Hour 7</string>
     <string name="hour8">Hour 8</string>
     <string name="yyyy_mm_dd">yyyy-mm-dd</string>
+
+    <string name="delete_request">Cancel Booking!</string>
+    <string name="delete_menu">Cancel Projector</string>
 
 </resources>
