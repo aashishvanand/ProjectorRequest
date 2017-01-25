@@ -162,6 +162,7 @@ public class Request extends AppCompatActivity {
                         SnackbarRequest.show();
                         Intent i = new Intent(Request.this, MainActivity.class);
                         startActivity(i);
+                        finish();
 
                     } else {
                         String errorMsg = jObj.getString("error_msg");

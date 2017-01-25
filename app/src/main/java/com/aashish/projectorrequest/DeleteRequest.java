@@ -121,6 +121,7 @@ public class DeleteRequest extends AppCompatActivity {
 
                         Intent i = new Intent(DeleteRequest.this, MainActivity.class);
                         startActivity(i);
+                        finish();
 
                     } else {
                         String errorMsg = jObj.getString("error_msg");

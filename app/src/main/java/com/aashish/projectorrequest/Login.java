@@ -59,6 +59,7 @@ public class Login extends AppCompatActivity {
                 //checkLogin(code.getText().toString(),password.getText().toString());
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

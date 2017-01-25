@@ -102,7 +102,7 @@ public class DetailedView extends AppCompatActivity {
         }
 
         if (id == R.id.logout) {
-            session.setLogin(false);
+            //session.setLogin(false);
             startActivity(new Intent(this, com.aashish.projectorrequest.Login.class));
             return true;
         }
@@ -145,28 +145,29 @@ public class DetailedView extends AppCompatActivity {
                             hour = hourArray.get(i);
                             switch (hour) {
                                 case "1":
-                                    text1 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
+                                    text1 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\n";
+
                                     break;
                                 case "2":
-                                    text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
+                                    text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\n";
                                     break;
                                 case "3":
-                                    text3 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
+                                    text3 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\n";
                                     break;
                                 case "4":
-                                    text4 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
+                                    text4 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\n";
                                     break;
                                 case "5":
-                                    text5 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
+                                    text5 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\n";
                                     break;
                                 case "6":
-                                    text6 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
+                                    text6 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\n";
                                     break;
                                 case "7":
-                                    text7 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\\n";
+                                    text7 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\n";
                                     break;
                                 case "8":
-                                    text8 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " ";
+                                    text8 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + "\n";
                                     break;
                             }
                         }
