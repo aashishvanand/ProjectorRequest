@@ -25,22 +25,21 @@
         <item>8</item>
     </string-array>
 
-
     <string-array name="project">
         <item>Select projector</item>
-        <item>canon</item>
-        <item>dell</item>
-        <item>epson</item>
-        <item>hp</item>
-        <item>hitachi</item>
+        <item>Canon</item>
+        <item>Dell</item>
+        <item>Epson</item>
+        <item>HP</item>
+        <item>Hitachi</item>
     </string-array>
 
     <string-array name="Year">
         <item>Select Year</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>I</item>
+        <item>II</item>
+        <item>III</item>
+        <item>IV</item>
     </string-array>
 
     <string-array name="dept">
