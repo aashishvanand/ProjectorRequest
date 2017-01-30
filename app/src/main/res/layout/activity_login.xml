@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:id="@+id/activity_request"
@@ -26,57 +27,45 @@
                 android:layout_height="150dp"
                 android:src="@drawable/logo" />
 
-            <EditText
-                android:id="@+id/code"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/recet"
-                android:gravity="center"
-                android:hint="StaffCode"
-                android:padding="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="#fff"
-                android:textSize="16sp"
-                android:typeface="serif"
-                tools:ignore="HardcodedText" />
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="10dp">
 
-            <EditText
-                android:id="@+id/password"
+                <EditText
+                    android:id="@+id/code"
+                    android:textColor="@color/secondaryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/staff_code" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/recet"
-                android:gravity="center"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="#fff"
-                android:textSize="16sp"
-                android:typeface="serif"
-                tools:ignore="HardcodedText" />
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
 
-            <Button
+                <EditText
+                    android:id="@+id/password"
+                    android:textColor="@color/secondaryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/submit"
-                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginBottom="24dp"
                 android:layout_marginTop="80dp"
-                android:background="@drawable/recet"
-                android:gravity="center"
-                android:hint="Login"
                 android:padding="12dp"
-                android:textColorHint="#fff"
-                android:textSize="16sp"
-                android:typeface="serif"
-                tools:ignore="HardcodedText" />
-
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/login_btn" />
 
         </LinearLayout>
     </ScrollView>

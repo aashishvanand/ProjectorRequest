@@ -56,6 +56,7 @@
         <item>D</item>
     </string-array>
 
+    <string name="login_btn">Login</string>
     <string name="request">Request</string>
     <string name="timetable">Timetable</string>
     <string name="wrong_user_or_password_combination">wrong_user_or_password_combination</string>
@@ -74,7 +75,10 @@
     <string name="hour8">Hour 8</string>
     <string name="yyyy_mm_dd">yyyy-mm-dd</string>
 
+    <string name="password">Password</string>
+    <string name="staff_code">Code</string>
     <string name="delete_request">Cancel Booking!</string>
     <string name="delete_menu">Cancel Projector</string>
+    <string name="check_connection">Check Your Connection and Retry Later</string>
 
 </resources>

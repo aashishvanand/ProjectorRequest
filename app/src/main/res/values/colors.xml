@@ -7,6 +7,7 @@
     <color name="text">#FFFFFF</color>
     <color name="primaryText">#212121</color>
     <color name="secondaryText">#757575</color>
+    <color name="login">#9C27B0</color>
 
     <color name="error">#b20e0f</color>
     <color name="white">#ffffff</color>
