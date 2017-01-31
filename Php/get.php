@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 $response = array("error" => FALSE);
 $servername = "localhost";
 $username = "root";
-$password = "*******";
+$password = "**********";
 $dbname = "projector";
 
 // Create connection
@@ -18,25 +18,45 @@ if ($conn->connect_error) {
 $hour=array();
 $staffcode=array();
 $model=array();
-$today = date('Y-m-d');
-$sql = "SELECT * FROM request WHERE date = '$today'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-     while($row = $result->fetch_assoc())
-	{
-	array_push($hour,$row["hour"]);
-	array_push($staffcode,$row["staffcode"]);
-	array_push($model,$row["projector"]);
-	}
+$year=array();
+$department=array();
+$section=array();
 
-$response["hour"] = $hour;
-$response["staffcode"] = $staffcode;
-$response["projector"] = $model;
+if (isset($_POST['date'])){
+
+	$today = $_POST['date'];
+	$sql = "SELECT * FROM request WHERE date = '$today' ORDER BY hour";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+     		while($row = $result->fetch_assoc())
+		{
+		array_push($hour,$row["hour"]);
+		array_push($staffcode,$row["staffcode"]);
+		array_push($model,$row["projector"]);
+		array_push($year,$row["year"]);
+		array_push($department,$row["department"]);
+		array_push($section,$row["section"]);
+
+		}
+	$response["hour"] = $hour;
+	$response["staffcode"] = $staffcode;
+	$response["projector"] = $model;
+	$response["year"] = $year;
+	$response["department"] = $department;
+	$response["section"] = $section;
+	}
+	else
+	{
+		$response["error"] = TRUE;
+		$response["error_msg"] = "No Projector Booked Still!";
+
+
+	}
 }
 else
-{
-$response["error"] = TRUE;
-}
+	{
+		$response["error"] = TRUE;
+	}
 
 echo json_encode($response);
 ?>

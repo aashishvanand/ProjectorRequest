@@ -22,7 +22,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "**********";
+$password = "*********";
 $dbname = "projector";
 
 // Create connection
@@ -49,8 +49,8 @@ echo "<table align='center'><tr><th>Date</th><th>1</th><th>2</th><th>3</th><th>4
 	$result_date = mysqli_query($conn, $sql_date_fetch);
 
 	while($row_date = mysqli_fetch_assoc($result_date)) {
-		if(strcmp($hours[$row_date['hour']-1], 'AVAIL')==0)$hours[$row_date['hour']-1]=$row_date['projector'].' Booked By '.$row_date['staffcode']."<br>";
-		else $hours[$row_date['hour']-1] .=$row_date['projector'].' Booked By '.$row_date['staffcode'];	}
+		if(strcmp($hours[$row_date['hour']-1], 'AVAIL')==0)$hours[$row_date['hour']-1]=$row_date['projector'].' Booked By '.$row_date['staffcode'].' For '.$row_date['year'].' '.$row_date['department'].' '.$row_date['section']."<br>";
+		else $hours[$row_date['hour']-1] .=$row_date['projector'].' Booked By '.$row_date['staffcode'].' For '.$row_date['year'].' '.$row_date['department'].' '.$row_date['section'];	}
 	$new_table_row = '<tr><th>'.$row['date'].'</th>';
 	foreach($hours as $hour){
 		$new_table_row .= '<th>'.$hour.'</th>';
