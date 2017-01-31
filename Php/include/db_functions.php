@@ -18,9 +18,9 @@ class db_functions {
 
    }
 
-    public function storeData($date, $hour, $staffcode,$projector) {	
-        $store = $this->conn->prepare("INSERT INTO request(date, hour, staffcode, requesttime, projector) VALUES(?, ?, ?, NOW(), ?)");
-        $store->bind_param("ssss", $date, $hour, $staffcode,$projector);
+    public function storeData($date, $hour, $staffcode,$projector,$department,$year,$section) {	
+        $store = $this->conn->prepare("INSERT INTO request(date, hour, staffcode, requesttime, projector,department,year,section) VALUES(?, ?, ?, NOW(), ?,?,?,?)");
+        $store->bind_param("sssssss", $date, $hour, $staffcode,$projector,$department,$year,$section);
         $result = $store->execute();
         $store->close();
      }
