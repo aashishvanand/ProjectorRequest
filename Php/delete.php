@@ -27,16 +27,15 @@ if (isset($_POST['date']) && isset($_POST['hour']) && isset($_POST['code']) ){
 
 	$sql = "DELETE FROM request WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code'";
 	$result = $conn->query($sql);
-	$one = 1;
-	if(strcmp($result,$one))
-	{
-		$response["error"] = FALSE;
-	}
-	else
+	if(mysqli_affected_rows($conn) === 0)
 	{
 		$response["error"] = TRUE;
 		$response["error_msg"] = "No Such Projector Booked";
-
+	
+	}
+	else
+	{
+		$response["error"] = FALSE;
 	}
 }
 else{
