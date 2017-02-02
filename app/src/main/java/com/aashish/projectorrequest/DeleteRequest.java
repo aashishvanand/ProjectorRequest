@@ -38,7 +38,6 @@ public class DeleteRequest extends AppCompatActivity {
     String[] period_delete = {"1", "2", "3", "4", "5", "6", "7", "8"};
     Button submit;
     Snackbar SnackbarDelete;
-    //String[] projector_array = {"Projector 1 - Canon", "Projector 2 - Dell", "Projector 3 - Epson", "Projector 4 - Hp", "Projector 5 - Hitachi"};
     CoordinatorLayout coordinatorLayoutDelete;
     private ProgressDialog pDialog;
 
