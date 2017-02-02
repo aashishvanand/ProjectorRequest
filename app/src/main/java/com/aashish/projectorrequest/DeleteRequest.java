@@ -32,9 +32,9 @@ public class DeleteRequest extends AppCompatActivity {
 
     public static final String PREF = "Projectrequest";
     SimpleDateFormat formatter;
-    String code,dept;
+    String code, dept;
     EditText date1;
-    MaterialSpinner period_spinner,projector_spinner;
+    MaterialSpinner period_spinner, projector_spinner;
     String[] period_delete = {"1", "2", "3", "4", "5", "6", "7", "8"};
     Button submit;
     Snackbar SnackbarDelete;
@@ -61,11 +61,11 @@ public class DeleteRequest extends AppCompatActivity {
         period_spinner.setAdapter(period_adapter);
         period_spinner.setHint(getResources().getString(R.string.select_hour));
 
-        final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, projector_array);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter<String> projector_adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, projector_array);
+        projector_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         projector_spinner = (MaterialSpinner) findViewById(R.id.spinner_projector);
-        projector_spinner.setAdapter(period_adapter);
-        projector_spinner.setHint(getResources().getString(R.string.select_hour));
+        projector_spinner.setAdapter(projector_adapter);
+        projector_spinner.setHint(getResources().getString(R.string.select_projector));
 
         date1 = (EditText) findViewById(R.id.date);
 
@@ -75,10 +75,10 @@ public class DeleteRequest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DateTime now = DateTime.now();
-                MonthAdapter.CalendarDay minDate = new MonthAdapter.CalendarDay(now.getYear(), now.getMonthOfYear()-1 , now.getDayOfMonth());
+                MonthAdapter.CalendarDay minDate = new MonthAdapter.CalendarDay(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
                 CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment();
                 cdp.show(DeleteRequest.this.getSupportFragmentManager(), "Calendar");
-                cdp.setDateRange(minDate,null);
+                cdp.setDateRange(minDate, null);
                 cdp.setOnDateSetListener(new CalendarDatePickerDialogFragment.OnDateSetListener() {
                     @Override
                     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
@@ -102,7 +102,7 @@ public class DeleteRequest extends AppCompatActivity {
                 String hour = period_spinner.getSelectedItem().toString();
                 String projector = projector_spinner.getSelectedItem().toString();
                 String date = date1.getText().toString();
-                deleteData(hour,date,projector,code);
+                deleteData(hour, date, projector, code);
 
             }
         });

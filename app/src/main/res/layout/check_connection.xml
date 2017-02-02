@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="2">
+    android:layout_weight="2"
+    android:orientation="vertical">
 
     <ImageView
-        android:layout_marginTop="@dimen/check_connection_margin_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/check_connection_margin_top"
         android:layout_weight="1"
-        android:src="@drawable/ic_connection_24dp"/>
+        android:src="@drawable/ic_connection_24dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="@dimen/check_connection_text_size"
+        android:text="@string/check_connection"
         android:textAlignment="center"
-        android:text="@string/check_connection"/>
-
+        android:textSize="@dimen/check_connection_text_size" />
 
 
 </LinearLayout>

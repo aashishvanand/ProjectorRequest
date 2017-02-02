@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkLogin(code.getText().toString(),password.getText().toString());
+                checkLogin(code.getText().toString(), password.getText().toString());
             }
         });
     }

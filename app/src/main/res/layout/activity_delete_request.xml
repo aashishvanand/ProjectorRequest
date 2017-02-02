@@ -84,7 +84,6 @@
                 app:ms_thickness=".5dp" />
 
 
-
             <Button
                 android:id="@+id/submit"
                 android:layout_width="match_parent"
