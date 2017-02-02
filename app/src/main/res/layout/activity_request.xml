@@ -30,6 +30,7 @@
 
                 <EditText
                     android:id="@+id/date"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/date"
@@ -41,14 +42,14 @@
 
 
             <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinner_period"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:background="#FFFFFF"
                 android:backgroundTint="#FFF"
-                android:popupBackground="@color/rajalakshmi"
+                android:popupBackground="@color/list"
                 app:ms_alignLabels="false"
                 app:ms_arrowColor="#FFF"
                 app:ms_arrowSize="16dp"
@@ -63,14 +64,14 @@
 
 
             <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/spinner1"
+                android:id="@+id/spinner_projector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:background="#FFFFFF"
                 android:backgroundTint="#FFF"
-                android:popupBackground="@color/rajalakshmi"
+                android:popupBackground="@color/list"
                 app:ms_alignLabels="false"
                 app:ms_arrowColor="#FFF"
                 app:ms_arrowSize="16dp"
@@ -84,14 +85,14 @@
                 app:ms_thickness=".5dp" />
 
             <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/year"
+                android:id="@+id/spinner_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:background="#FFFFFF"
                 android:backgroundTint="#FFF"
-                android:popupBackground="@color/rajalakshmi"
+                android:popupBackground="@color/list"
                 app:ms_alignLabels="false"
                 app:ms_arrowColor="#FFF"
                 app:ms_arrowSize="16dp"
@@ -105,14 +106,14 @@
                 app:ms_thickness=".5dp" />
 
             <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/dept"
+                android:id="@+id/spinner_department"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:background="#FFFFFF"
                 android:backgroundTint="#FFF"
-                android:popupBackground="@color/rajalakshmi"
+                android:popupBackground="@color/list"
                 app:ms_alignLabels="false"
                 app:ms_arrowColor="#FFF"
                 app:ms_arrowSize="16dp"
@@ -126,14 +127,14 @@
                 app:ms_thickness=".5dp" />
 
             <fr.ganfra.materialspinner.MaterialSpinner
-                android:id="@+id/sec"
+                android:id="@+id/spinner_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:background="#FFFFFF"
                 android:backgroundTint="#FFF"
-                android:popupBackground="@color/rajalakshmi"
+                android:popupBackground="@color/list"
                 app:ms_alignLabels="false"
                 app:ms_arrowColor="#FFF"
                 app:ms_arrowSize="16dp"

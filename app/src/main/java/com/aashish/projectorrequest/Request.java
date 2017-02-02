@@ -16,6 +16,7 @@ import android.widget.EditText;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
+import com.codetroopers.betterpickers.calendardatepicker.MonthAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import org.joda.time.DateTime;
 
 import fr.ganfra.materialspinner.MaterialSpinner;
 
@@ -32,17 +34,17 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 public class Request extends AppCompatActivity {
 
     public static final String PREF = "Projectrequest";
-    Calendar c;
+    Calendar calendar;
     int year, month, day;
     SimpleDateFormat formatter;
-    String code;
+    String code,dept_pref;
     EditText date1;
-    MaterialSpinner spinner, spinner1, YEAR, DEPT, SEC;
-    String[] period = {"1", "2", "3", "4", "5", "6", "7", "8"};
-    String[] YEar = {"1", "2", "3", "4"};
-    String[] DEpt = {"CSE", "MECH"};
-    String[] SEc = {"A", "B", "C", "D"};
-    String[] project = {"Canon", "Dell", "Epson", "Hp", "Hitachi", "ViewSonic"};
+    MaterialSpinner period_spinner, projector_spinner, year_spinner, department_spinner, section_spinner;
+    String[] period_array = {"1", "2", "3", "4", "5", "6", "7", "8"};
+    String[] year_array = {"1", "2", "3", "4"};
+    String[] department_array = {"CSE", "MECH"};
+    String[] section_array = {"A", "B", "C", "D"};
+    String[] projector_array = {"Projector 1 - Canon", "Projector 2 - Dell", "Projector 3 - Epson", "Projector 4 - Hp", "Projector 5 - Hitachi"};
     Button submit;
     Snackbar SnackbarRequest;
     CoordinatorLayout coordinatorLayoutRequest;
@@ -56,39 +58,45 @@ public class Request extends AppCompatActivity {
         pDialog.setCancelable(false);
 
         coordinatorLayoutRequest = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutRequest);
-        c = Calendar.getInstance();
+        calendar = Calendar.getInstance();
         SharedPreferences prefs = getSharedPreferences(PREF, MODE_PRIVATE);
         code = prefs.getString("code", null);
+        dept_pref = prefs.getString("dept", null);
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, period);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, period_array);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, project);
+        final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, projector_array);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final ArrayAdapter<String> Year = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, YEar);
+        final ArrayAdapter<String> Year = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, year_array);
         Year.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final ArrayAdapter<String> dept = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, DEpt);
+        final ArrayAdapter<String> dept = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, department_array);
         dept.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final ArrayAdapter<String> sec = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, SEc);
+        final ArrayAdapter<String> sec = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, section_array);
         sec.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner = (MaterialSpinner) findViewById(R.id.spinner);
-        YEAR = (MaterialSpinner) findViewById(R.id.year);
-        DEPT = (MaterialSpinner) findViewById(R.id.dept);
-        SEC = (MaterialSpinner) findViewById(R.id.sec);
-        spinner1 = (MaterialSpinner) findViewById(R.id.spinner1);
-        spinner1.setAdapter(adapter1);
-        spinner.setAdapter(adapter);
-        YEAR.setAdapter(Year);
-        DEPT.setAdapter(dept);
-        SEC.setAdapter(sec);
-        spinner.setHint("Select period");
-        YEAR.setHint("Select Year");
-        DEPT.setHint("Select Dept");
-        SEC.setHint("Select Section");
-        spinner1.setHint("Select projector");
 
-        year = c.get(Calendar.YEAR);
-        month = c.get(Calendar.MONTH);
-        day = c.get(Calendar.DAY_OF_MONTH);
+        period_spinner = (MaterialSpinner) findViewById(R.id.spinner_period);
+        period_spinner.setHint(getResources().getString(R.string.select_hour));
+        period_spinner.setAdapter(adapter);
+
+        projector_spinner = (MaterialSpinner) findViewById(R.id.spinner_projector);
+        projector_spinner.setHint(getResources().getString(R.string.select_projector));
+        projector_spinner.setAdapter(adapter1);
+
+        year_spinner = (MaterialSpinner) findViewById(R.id.spinner_year);
+        year_spinner.setHint(getResources().getString(R.string.select_year));
+        year_spinner.setAdapter(Year);
+
+        department_spinner = (MaterialSpinner) findViewById(R.id.spinner_department);
+        department_spinner.setHint(getResources().getString(R.string.select_dept));
+        department_spinner.setAdapter(dept);
+
+        section_spinner = (MaterialSpinner) findViewById(R.id.spinner_section);
+        section_spinner.setAdapter(sec);
+        section_spinner.setHint(getResources().getString(R.string.select_section));
+
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
         date1 = (EditText) findViewById(R.id.date);
         submit = (Button) findViewById(R.id.submit);
 
@@ -96,18 +104,45 @@ public class Request extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String period = spinner.getSelectedItem().toString();
-                String dept = DEPT.getSelectedItem().toString();
-                String YEar = YEAR.getSelectedItem().toString();
-                String Sec = SEC.getSelectedItem().toString();
-                String projector = spinner1.getSelectedItem().toString();
+                String period = period_spinner.getSelectedItem().toString();
+                String department = department_spinner.getSelectedItem().toString();
+                String year = year_spinner.getSelectedItem().toString();
+                String section = section_spinner.getSelectedItem().toString();
+                String projector = projector_spinner.getSelectedItem().toString();
 
-                if (period.equalsIgnoreCase("Select period") || projector.equalsIgnoreCase("Select projector") || dept.equalsIgnoreCase("Select Dept") || Sec.equalsIgnoreCase("Select Section") || YEar.equalsIgnoreCase("Select Year") || date1.equals("")) {
+                if (period.equalsIgnoreCase(getResources().getString(R.string.select_hour)) || projector.equalsIgnoreCase(getResources().getString(R.string.select_projector)) || department.equalsIgnoreCase(getResources().getString(R.string.select_dept)) || section.equalsIgnoreCase(getResources().getString(R.string.select_section)) || year.equalsIgnoreCase(getResources().getString(R.string.select_year)) || date1.equals("")) {
+
+                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_hour)))
+                    {
+                        period_spinner.setError(getResources().getString(R.string.select_proper_value));
+                    }
+
+                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_projector)))
+                    {
+                        period_spinner.setError(getResources().getString(R.string.select_proper_value));
+                    }
+
+                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_dept)))
+                    {
+                        period_spinner.setError(getResources().getString(R.string.select_proper_value));
+                    }
+
+                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_section)))
+                    {
+                        period_spinner.setError(getResources().getString(R.string.select_proper_value));
+                    }
+
+                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_year)))
+                    {
+                        period_spinner.setError(getResources().getString(R.string.select_proper_value));
+                    }
+
+
                     SnackbarRequest = Snackbar
-                            .make(coordinatorLayoutRequest, "Please Check your Selection", Snackbar.LENGTH_SHORT);
+                            .make(coordinatorLayoutRequest, getResources().getString(R.string.check_selection), Snackbar.LENGTH_SHORT);
                     SnackbarRequest.show();
                 } else {
-                    requestdata(period, projector, dept, YEar, Sec);
+                    requestData(period, projector, department, year, section);
                 }
             }
         });
@@ -115,9 +150,11 @@ public class Request extends AppCompatActivity {
         date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get Current Date
+                DateTime now = DateTime.now();
+                MonthAdapter.CalendarDay minDate = new MonthAdapter.CalendarDay(now.getYear(), now.getMonthOfYear()-1 , now.getDayOfMonth());
                 CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment();
-                cdp.show(Request.this.getSupportFragmentManager(), "Material Calendar Example");
+                cdp.show(Request.this.getSupportFragmentManager(), "Calender");
+                cdp.setDateRange(minDate,null);
 
                 cdp.setOnDateSetListener(new CalendarDatePickerDialogFragment.OnDateSetListener() {
                     @Override
@@ -139,7 +176,7 @@ public class Request extends AppCompatActivity {
 
     }
 
-    private void requestdata(final String period, final String projector, final String dept, final String YEar, final String sec) {
+    private void requestData(final String period, final String projector, final String dept, final String YEar, final String sec) {
         // Tag used to cancel the request
         String tag_string_req = "req_proj";
         pDialog.setMessage("Requesting Projector");
@@ -158,7 +195,7 @@ public class Request extends AppCompatActivity {
                     // Check for error node in json
                     if (!error) {
                         SnackbarRequest = Snackbar
-                                .make(coordinatorLayoutRequest, "Registered Successfully", Snackbar.LENGTH_SHORT);
+                                .make(coordinatorLayoutRequest, getResources().getString(R.string.booked_successfully), Snackbar.LENGTH_SHORT);
                         SnackbarRequest.show();
                         Intent i = new Intent(Request.this, MainActivity.class);
                         startActivity(i);
@@ -173,7 +210,7 @@ public class Request extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     SnackbarRequest = Snackbar
-                            .make(coordinatorLayoutRequest, getString(R.string.wrong_user_or_password_combination), Snackbar.LENGTH_SHORT);
+                            .make(coordinatorLayoutRequest, getString(R.string.unknown_error), Snackbar.LENGTH_SHORT);
                     SnackbarRequest.show();
                 }
 
@@ -196,12 +233,13 @@ public class Request extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("date", date1.getText().toString());
                 params.put("hour", period);
-                //params.put("staffcode", code);
-                params.put("staffcode", "cs11");
+                params.put("staffcode", code);
                 params.put("projector", projector);
                 params.put("department", dept);
                 params.put("year", YEar);
                 params.put("section", sec);
+                params.put("dept",dept_pref);
+
 
 
                 return params;

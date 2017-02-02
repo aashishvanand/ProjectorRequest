@@ -56,10 +56,7 @@ public class Login extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //checkLogin(code.getText().toString(),password.getText().toString());
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                checkLogin(code.getText().toString(),password.getText().toString());
             }
         });
     }
@@ -85,12 +82,15 @@ public class Login extends AppCompatActivity {
                     boolean error = jObj.getBoolean("error");
                     // Check for error node in json
                     if (!error) {
-
+                        String dept = jObj.getString("department");
                         SharedPreferences.Editor editor = getSharedPreferences(PREF, MODE_PRIVATE).edit();
                         editor.putString("code", code);
+                        editor.putString("dept", dept);
                         editor.apply();
-
                         session.setLogin(true);
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
 
                     } else {
                         // Error in login. Get the error message
@@ -123,7 +123,7 @@ public class Login extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
-                params.put("email", code);
+                params.put("staffcode", code);
                 params.put("password", password);
 
                 return params;

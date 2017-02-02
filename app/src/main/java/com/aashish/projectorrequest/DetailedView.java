@@ -2,6 +2,7 @@ package com.aashish.projectorrequest;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -42,6 +43,8 @@ public class DetailedView extends AppCompatActivity {
     ArrayList<String> departmentArray = new ArrayList<String>();
     private FloatingActionButton fab;
     private ProgressDialog pDialog;
+    public static final String PREF = "Projectrequest";
+    String dept;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,9 @@ public class DetailedView extends AppCompatActivity {
         coordinatorLayoutMainActivity = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutMainActivity);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
+
+        SharedPreferences prefs = getSharedPreferences(PREF, MODE_PRIVATE);
+        dept = prefs.getString("dept", null);
 
         getdata(getIntent().getStringExtra("date"));
 
@@ -105,7 +111,7 @@ public class DetailedView extends AppCompatActivity {
         }
 
         if (id == R.id.logout) {
-            //session.setLogin(false);
+            session.setLogin(false);
             startActivity(new Intent(this, com.aashish.projectorrequest.Login.class));
             return true;
         }
@@ -258,6 +264,7 @@ public class DetailedView extends AppCompatActivity {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
                 params.put("date", date);
+                params.put("dept", dept);
                 return params;
             }
         };

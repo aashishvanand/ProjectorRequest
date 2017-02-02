@@ -15,7 +15,9 @@ import android.widget.EditText;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
+import com.codetroopers.betterpickers.calendardatepicker.MonthAdapter;
 
+import org.joda.time.DateTime;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,12 +32,13 @@ public class DeleteRequest extends AppCompatActivity {
 
     public static final String PREF = "Projectrequest";
     SimpleDateFormat formatter;
-    String code;
+    String code,dept;
     EditText date1;
-    MaterialSpinner period;
+    MaterialSpinner period_spinner,projector_spinner;
     String[] period_delete = {"1", "2", "3", "4", "5", "6", "7", "8"};
     Button submit;
     Snackbar SnackbarDelete;
+    String[] projector_array = {"Projector 1 - Canon", "Projector 2 - Dell", "Projector 3 - Epson", "Projector 4 - Hp", "Projector 5 - Hitachi"};
     CoordinatorLayout coordinatorLayoutDelete;
     private ProgressDialog pDialog;
 
@@ -50,13 +53,19 @@ public class DeleteRequest extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences(PREF, MODE_PRIVATE);
         code = prefs.getString("code", null);
-
+        dept = prefs.getString("dept", null);
 
         final ArrayAdapter<String> period_adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, period_delete);
         period_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        period = (MaterialSpinner) findViewById(R.id.period);
-        period.setAdapter(period_adapter);
-        period.setHint("Select Period");
+        period_spinner = (MaterialSpinner) findViewById(R.id.period_spinner);
+        period_spinner.setAdapter(period_adapter);
+        period_spinner.setHint(getResources().getString(R.string.select_hour));
+
+        final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, projector_array);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        projector_spinner = (MaterialSpinner) findViewById(R.id.spinner_projector);
+        projector_spinner.setAdapter(period_adapter);
+        projector_spinner.setHint(getResources().getString(R.string.select_hour));
 
         date1 = (EditText) findViewById(R.id.date);
 
@@ -65,9 +74,11 @@ public class DeleteRequest extends AppCompatActivity {
         date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get Current Date
+                DateTime now = DateTime.now();
+                MonthAdapter.CalendarDay minDate = new MonthAdapter.CalendarDay(now.getYear(), now.getMonthOfYear()-1 , now.getDayOfMonth());
                 CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment();
-                cdp.show(DeleteRequest.this.getSupportFragmentManager(), "Material Calendar Example");
+                cdp.show(DeleteRequest.this.getSupportFragmentManager(), "Calendar");
+                cdp.setDateRange(minDate,null);
                 cdp.setOnDateSetListener(new CalendarDatePickerDialogFragment.OnDateSetListener() {
                     @Override
                     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
@@ -88,16 +99,17 @@ public class DeleteRequest extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String hour = period.getSelectedItem().toString();
+                String hour = period_spinner.getSelectedItem().toString();
+                String projector = projector_spinner.getSelectedItem().toString();
                 String date = date1.getText().toString();
-                //deleteData(hour,date,code);
-                deleteData(hour, date, "cs11");
+                deleteData(hour,date,projector,code);
+
             }
         });
 
     }
 
-    private void deleteData(final String hour, final String date, final String code) {
+    private void deleteData(final String hour, final String date, final String projector, final String code) {
         // Tag used to cancel the request
         String tag_string_req = "del_proj";
         pDialog.setMessage("Deleting Request");
@@ -116,7 +128,7 @@ public class DeleteRequest extends AppCompatActivity {
                     // Check for error node in json
                     if (!error) {
                         SnackbarDelete = Snackbar
-                                .make(coordinatorLayoutDelete, "Successfully Deleted", Snackbar.LENGTH_SHORT);
+                                .make(coordinatorLayoutDelete, getResources().getString(R.string.successfully_deleted), Snackbar.LENGTH_SHORT);
                         SnackbarDelete.show();
 
                         Intent i = new Intent(DeleteRequest.this, MainActivity.class);
@@ -132,7 +144,7 @@ public class DeleteRequest extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     SnackbarDelete = Snackbar
-                            .make(coordinatorLayoutDelete, getString(R.string.wrong_user_or_password_combination), Snackbar.LENGTH_SHORT);
+                            .make(coordinatorLayoutDelete, getString(R.string.unknown), Snackbar.LENGTH_SHORT);
                     SnackbarDelete.show();
                 }
 
@@ -155,7 +167,9 @@ public class DeleteRequest extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("date", date);
                 params.put("hour", hour);
+                params.put("projector", projector);
                 params.put("code", code);
+                params.put("dept", dept);
 
                 return params;
             }

@@ -18,10 +18,10 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'URL_get', '"http://aashish.noip.me/projector/get.php"'
-        it.buildConfigField 'String', 'URL_request', '"http://aashish.noip.me/projector/request.php"'
-        it.buildConfigField 'String', 'URL_login', '"http://aashish.noip.me/projector/login.php"'
-        it.buildConfigField 'String', 'URL_delete', '"http://aashish.noip.me/projector/delete.php"'
+        it.buildConfigField 'String', 'URL_get', '"http://aashish.noip.me/projector/android/get.php"'
+        it.buildConfigField 'String', 'URL_request', '"http://aashish.noip.me/projector/android/request.php"'
+        it.buildConfigField 'String', 'URL_login', '"http://aashish.noip.me/projector/android/login.php"'
+        it.buildConfigField 'String', 'URL_delete', '"http://aashish.noip.me/projector/android/delete.php"'
     }
 }
 
@@ -34,6 +34,7 @@ dependencies {
     compile 'com.mcxiaoke.volley:library-aar:1.0.1'
     compile 'com.github.ganfra:material-spinner:1.1.1'
     compile 'com.code-troopers.betterpickers:library:2.5.3'
+    compile 'joda-time:joda-time:2.9.7'
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support:support-v4:25.1.1'
     compile 'com.android.support:design:25.1.1'

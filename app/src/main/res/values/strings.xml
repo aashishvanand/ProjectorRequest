@@ -27,11 +27,11 @@
 
     <string-array name="project">
         <item>Select projector</item>
-        <item>Canon</item>
-        <item>Dell</item>
-        <item>Epson</item>
-        <item>HP</item>
-        <item>Hitachi</item>
+        <item>Projector 1 - Canon</item>
+        <item>Projector 2 - Dell</item>
+        <item>Projector 3 - Epson</item>
+        <item>Projector 4 - HP</item>
+        <item>Projector 5 - Hitachi</item>
     </string-array>
 
     <string-array name="Year">
@@ -80,5 +80,18 @@
     <string name="delete_request">Cancel Booking!</string>
     <string name="delete_menu">Cancel Projector</string>
     <string name="check_connection">Check Your Connection and Retry Later</string>
+    <string name="unknown">Unknown Error!</string>
+    <string name="select_proper_value">Select Proper Value</string>
+    <string name="check_selection">Check your Selection</string>
+
+    <string name="select_hour">Select Hour</string>
+    <string name="select_projector">Select Projector</string>
+    <string name="select_year">Select Year</string>
+    <string name="select_dept">Select Department</string>
+    <string name="select_section">Select Section</string>
+    <string name="booked_successfully">Booked Successfully</string>
+    <string name="unknown_error">Unknown Error</string>
+    <string name="successfully_deleted">Successfully Deleted</string>
+
 
 </resources>
