@@ -41,8 +41,8 @@ public class Request extends AppCompatActivity {
     EditText date1;
     MaterialSpinner period_spinner, projector_spinner, year_spinner, department_spinner, section_spinner;
     String[] period_array = {"1", "2", "3", "4", "5", "6", "7", "8"};
-    String[] year_array = {"1", "2", "3", "4"};
-    String[] department_array = {"CSE", "MECH"};
+    String[] year_array = {"I", "II", "III", "IV"};
+    String[] department_array = {"AERO","AUTO","BTECH","BMED","CHEM","CIVIL","CSE","EEE","ECE","IT","MECH","MTRCS","HS","PE","EDC","MBA","MCA"};
     String[] section_array = {"A", "B", "C", "D"};
     String[] projector_array = {"Projector 1 - Canon", "Projector 2 - Dell", "Projector 3 - Epson", "Projector 4 - Hp", "Projector 5 - Hitachi"};
     Button submit;

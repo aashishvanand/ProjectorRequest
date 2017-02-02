@@ -45,11 +45,13 @@ public class DetailedView extends AppCompatActivity {
     private ProgressDialog pDialog;
     public static final String PREF = "Projectrequest";
     String dept;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailedview);
+        session = new SessionManager(getApplicationContext());
 
         hour1 = (TextView) findViewById(R.id.hour1);
         hour2 = (TextView) findViewById(R.id.hour2);
@@ -73,7 +75,7 @@ public class DetailedView extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-        SharedPreferences prefs = getSharedPreferences(PREF, MODE_PRIVATE);
+        prefs = getSharedPreferences(PREF, MODE_PRIVATE);
         dept = prefs.getString("dept", null);
 
         getdata(getIntent().getStringExtra("date"));
@@ -112,6 +114,7 @@ public class DetailedView extends AppCompatActivity {
 
         if (id == R.id.logout) {
             session.setLogin(false);
+            getApplicationContext().getSharedPreferences(PREF, 0).edit().clear().apply();
             startActivity(new Intent(this, com.aashish.projectorrequest.Login.class));
             return true;
         }
