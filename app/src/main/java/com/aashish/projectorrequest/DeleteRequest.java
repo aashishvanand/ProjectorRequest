@@ -38,7 +38,7 @@ public class DeleteRequest extends AppCompatActivity {
     String[] period_delete = {"1", "2", "3", "4", "5", "6", "7", "8"};
     Button submit;
     Snackbar SnackbarDelete;
-    String[] projector_array = {"Projector 1 - Canon", "Projector 2 - Dell", "Projector 3 - Epson", "Projector 4 - Hp", "Projector 5 - Hitachi"};
+    //String[] projector_array = {"Projector 1 - Canon", "Projector 2 - Dell", "Projector 3 - Epson", "Projector 4 - Hp", "Projector 5 - Hitachi"};
     CoordinatorLayout coordinatorLayoutDelete;
     private ProgressDialog pDialog;
 
@@ -61,7 +61,7 @@ public class DeleteRequest extends AppCompatActivity {
         period_spinner.setAdapter(period_adapter);
         period_spinner.setHint(getResources().getString(R.string.select_hour));
 
-        final ArrayAdapter<String> projector_adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, projector_array);
+        final ArrayAdapter<String> projector_adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, MainActivity.dept_projector);
         projector_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         projector_spinner = (MaterialSpinner) findViewById(R.id.spinner_projector);
         projector_spinner.setAdapter(projector_adapter);
