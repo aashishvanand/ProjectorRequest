@@ -92,6 +92,7 @@
     <string name="booked_successfully">Booked Successfully</string>
     <string name="unknown_error">Unknown Error</string>
     <string name="successfully_deleted">Successfully Deleted</string>
+    <string name="get_projector">Updating Projector list</string>
 
 
 </resources>

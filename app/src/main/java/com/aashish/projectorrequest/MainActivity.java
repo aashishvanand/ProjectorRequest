@@ -1,17 +1,32 @@
 package com.aashish.projectorrequest;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
     TextView day1_month, day2_month, day3_month, day4_month, day5_month, day6_month;
     TextView day1_year, day2_year, day3_year, day4_year, day5_year, day6_year;
 
+    CoordinatorLayout coordinatorLayoutMainActivity;
+    Snackbar SnackbarMain;
+    private ProgressDialog pDialog;
+    public static final String PREF = "Projectrequest";
+    String dept;
+    static ArrayList<String> dept_projector = new ArrayList<String>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +51,13 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.check_connection);
         } else {
             setContentView(R.layout.activity_main);
+            coordinatorLayoutMainActivity = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutMainActivity);
+            SharedPreferences prefs = getSharedPreferences(PREF, MODE_PRIVATE);
+            dept = prefs.getString("dept", null);
 
+            pDialog = new ProgressDialog(MainActivity.this);
+            pDialog.setTitle(getString(R.string.get_projector));
+            getProjectorData();
             day1_imageView = (ImageView) findViewById(R.id.day1_imageView);
             day2_imageView = (ImageView) findViewById(R.id.day2_imageView);
             day3_imageView = (ImageView) findViewById(R.id.day3_imageView);
@@ -181,6 +210,80 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    private void getProjectorData() {
+        // Tag used to cancel the request
+        String tag_string_req = "update_proj_list";
+        pDialog.setMessage("Updating Projector");
+        showDialog();
+
+        final StringRequest strReq = new StringRequest(com.android.volley.Request.Method.POST,
+                BuildConfig.URL_update, new com.android.volley.Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    // Check for error node in json
+                    if (!error) {
+                        JSONArray jsonArray = jObj.getJSONArray("projector");
+
+                        for(int i=0;i<jsonArray.length();i++)
+                        {
+                            dept_projector.add(jsonArray.getString(i));
+                        }
+
+
+                    } else {
+                        String errorMsg = jObj.getString("error_msg");
+                        SnackbarMain = Snackbar
+                                .make(coordinatorLayoutMainActivity, errorMsg, Snackbar.LENGTH_SHORT);
+                        SnackbarMain.show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    SnackbarMain = Snackbar
+                            .make(coordinatorLayoutMainActivity, getString(R.string.unknown), Snackbar.LENGTH_SHORT);
+                    SnackbarMain.show();
+                }
+
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                SnackbarMain = Snackbar
+                        .make(coordinatorLayoutMainActivity, error.getMessage(), Snackbar.LENGTH_SHORT);
+                SnackbarMain.show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("dept", dept);
+
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 
 }

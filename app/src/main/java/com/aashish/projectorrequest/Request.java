@@ -44,7 +44,7 @@ public class Request extends AppCompatActivity {
     String[] year_array = {"I", "II", "III", "IV"};
     String[] department_array = {"AERO", "AUTO", "BTECH", "BMED", "CHEM", "CIVIL", "CSE", "EEE", "ECE", "IT", "MECH", "MTRCS", "HS", "PE", "EDC", "MBA", "MCA"};
     String[] section_array = {"A", "B", "C", "D"};
-    String[] projector_array = {"Projector 1 - Canon", "Projector 2 - Dell", "Projector 3 - Epson", "Projector 4 - Hp", "Projector 5 - Hitachi"};
+    //String[] projector_array = {"Projector 1 - Canon", "Projector 2 - Dell", "Projector 3 - Epson", "Projector 4 - Hp", "Projector 5 - Hitachi"};
     Button submit;
     Snackbar SnackbarRequest;
     CoordinatorLayout coordinatorLayoutRequest;
@@ -65,7 +65,7 @@ public class Request extends AppCompatActivity {
 
         final ArrayAdapter<String> period_adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, period_array);
         period_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final ArrayAdapter<String> projector_adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, projector_array);
+        final ArrayAdapter<String> projector_adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, MainActivity.dept_projector);
         projector_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final ArrayAdapter<String> year_adapter = new ArrayAdapter<String>(getApplication(), android.R.layout.simple_spinner_item, year_array);
         year_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

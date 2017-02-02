@@ -22,6 +22,7 @@ android {
         it.buildConfigField 'String', 'URL_request', '"http://aashish.noip.me/projector/android/request.php"'
         it.buildConfigField 'String', 'URL_login', '"http://aashish.noip.me/projector/android/login.php"'
         it.buildConfigField 'String', 'URL_delete', '"http://aashish.noip.me/projector/android/delete.php"'
+        it.buildConfigField 'String', 'URL_update', '"http://aashish.noip.me/projector/android/update.php"'
     }
 }
 

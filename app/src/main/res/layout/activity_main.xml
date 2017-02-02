@@ -1,14 +1,21 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:prefix="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayoutMainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.aashish.projectorrequest.MainActivity">
+
+<ScrollView
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:prefix="http://schemas.android.com/apk/res-auto"
+        <LinearLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -360,3 +367,4 @@
 
     </LinearLayout>
 </ScrollView>
+</android.support.design.widget.CoordinatorLayout>
