@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 $response = array("error" => FALSE);
 $servername = "localhost";
 $username = "root";
-$password = "**********";
+$password = "******";
 $dbname = "projector";
 
 // Create connection
@@ -22,12 +22,22 @@ $year=array();
 $department=array();
 $section=array();
 
-if (isset($_POST['date'])){
+if (isset($_POST['date']) && isset($_POST['dept'])){
 
 	$today = $_POST['date'];
-	$sql = "SELECT * FROM request WHERE date = '$today' ORDER BY hour";
+	$dept = $_POST['dept'];
+
+	switch ($dept) {
+    		case "cse":
+			$sql = "SELECT * FROM `cse.projector` WHERE date = '$today' ORDER BY hour";
+        		break;
+    		case "mech":
+			$sql = "SELECT * FROM `mech.projector` WHERE date = '$today' ORDER BY hour";
+        		break;
+    	}
+
 	$result = $conn->query($sql);
-	if ($result->num_rows > 0) {
+	if ($result && $result->num_rows > 0) {
      		while($row = $result->fetch_assoc())
 		{
 		array_push($hour,$row["hour"]);

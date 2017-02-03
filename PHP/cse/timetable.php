@@ -22,7 +22,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "*********";
+$password = "******";
 $dbname = "projector";
 
 // Create connection
@@ -32,8 +32,8 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 $today = date('Y-m-d');
-$thisweek = date('Y-m-d', strtotime('+7 days'));
-$sql = "SELECT DISTINCT date FROM request WHERE (date BETWEEN '$today' AND '$thisweek') order by date asc";
+$thisweek = date('Y-m-d', strtotime('+6 days'));
+$sql = "SELECT DISTINCT date FROM `cse.projector` WHERE (date BETWEEN '$today' AND '$thisweek') order by date asc";
 $result = mysqli_query($conn, $sql);
 echo '<h1>Projector Request</h1>';
 
@@ -45,7 +45,7 @@ echo "<table align='center'><tr><th>Date</th><th>1</th><th>2</th><th>3</th><th>4
 	$hours = array_fill(0,8,'AVAIL');
 	$staff = array_fill(0,8,'NULL');
 	$date= $row['date'];
-	$sql_date_fetch = "SELECT * FROM request WHERE date='$date'";
+	$sql_date_fetch = "SELECT * FROM `cse.projector` WHERE date='$date'";
 	$result_date = mysqli_query($conn, $sql_date_fetch);
 
 	while($row_date = mysqli_fetch_assoc($result_date)) {

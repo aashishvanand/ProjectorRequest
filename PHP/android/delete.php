@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 $response = array("error" => FALSE);
 $servername = "localhost";
 $username = "root";
-$password = "*********";
+$password = "*******";
 $dbname = "projector";
 
 // Create connection
@@ -19,13 +19,26 @@ $hour=array();
 $staffcode=array();
 $model=array();
 
-if (isset($_POST['date']) && isset($_POST['hour']) && isset($_POST['code']) ){
+if (isset($_POST['date']) && isset($_POST['hour']) && isset($_POST['code']) && isset($_POST['projector']) && isset($_POST['dept']) ){
 
 	$date = $_POST['date'];
 	$hour = $_POST['hour'];
 	$code = $_POST['code'];
+	$projector = $_POST['projector'];
+	$dept = $_POST['dept'];
 
-	$sql = "DELETE FROM request WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code'";
+	switch ($dept) {
+    		case "cse":
+		$sql = "DELETE FROM `cse.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+        	break;
+    	case "mech":
+		$sql = "DELETE FROM `mech.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+        	break;
+    	case "cake":
+        	echo "i is cake";
+        	break;
+	}
+
 	$result = $conn->query($sql);
 	if(mysqli_affected_rows($conn) === 0)
 	{
