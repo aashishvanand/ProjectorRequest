@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day1);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -151,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day2);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -160,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day3);
                     startActivity(intent);
+                    finish();
 
                 }
             });
@@ -170,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day4);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -179,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day5);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -188,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day6);
                     startActivity(intent);
+                    finish();
                 }
             });
 

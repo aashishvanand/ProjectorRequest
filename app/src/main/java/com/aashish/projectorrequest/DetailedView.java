@@ -86,6 +86,7 @@ public class DetailedView extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DetailedView.this, Request.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -109,6 +110,7 @@ public class DetailedView extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.delete) {
             startActivity(new Intent(this, com.aashish.projectorrequest.DeleteRequest.class));
+            finish();
             return true;
         }
 
@@ -116,6 +118,7 @@ public class DetailedView extends AppCompatActivity {
             session.setLogin(false);
             getApplicationContext().getSharedPreferences(PREF, 0).edit().clear().apply();
             startActivity(new Intent(this, com.aashish.projectorrequest.Login.class));
+            finish();
             return true;
         }
 
