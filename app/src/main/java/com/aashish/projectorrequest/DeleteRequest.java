@@ -129,7 +129,7 @@ public class DeleteRequest extends AppCompatActivity {
                         SnackbarDelete = Snackbar
                                 .make(coordinatorLayoutDelete, getResources().getString(R.string.successfully_deleted), Snackbar.LENGTH_SHORT);
                         SnackbarDelete.show();
-
+                        MainActivity.dept_projector.clear();
                         Intent i = new Intent(DeleteRequest.this, MainActivity.class);
                         startActivity(i);
                         finish();

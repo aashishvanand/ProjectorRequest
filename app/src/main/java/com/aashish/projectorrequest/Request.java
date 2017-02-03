@@ -191,6 +191,7 @@ public class Request extends AppCompatActivity {
                         SnackbarRequest = Snackbar
                                 .make(coordinatorLayoutRequest, getResources().getString(R.string.booked_successfully), Snackbar.LENGTH_SHORT);
                         SnackbarRequest.show();
+                        MainActivity.dept_projector.clear();
                         Intent i = new Intent(Request.this, MainActivity.class);
                         startActivity(i);
                         finish();
