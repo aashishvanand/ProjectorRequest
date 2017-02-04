@@ -1,11 +1,22 @@
 <?php
+   require 'init.php';
+   include("config.php");
+         $error = '';
+   if(!isset($_SESSION['username']))header('location: index.php');
+   
+   if( empty( $_POST['datefield'] ) || empty( $_POST['hour'] ) || empty( $_POST['projector'] ) ){
+   
+               $error = 'All fields are required.';
+   
+           }
+   	else {
+   
+   
    error_reporting(-1);
    ini_set('display_errors', 'On');
-   // json response array
-   $response = array("error" => FALSE);
    $servername = "localhost";
    $username = "root";
-   $password = "*********";
+   $password = "******";
    $dbname = "projector";
    
    // Create connection
@@ -15,17 +26,12 @@
         die("Connection failed: " . $conn->connect_error);
    }
    
-   $hour=array();
-   $staffcode=array();
-   $model=array();
    
-   if (isset($_POST['date']) && isset($_POST['hour']) && isset($_POST['code']) && isset($_POST['projector']) && isset($_POST['dept']) ){
-   
-   	$date = $_POST['date'];
+   	$date = $_POST['datefield'];
    	$hour = $_POST['hour'];
-   	$code = $_POST['code'];
+   	$code = $_SESSION['username'];
    	$projector = $_POST['projector'];
-   	$dept = $_POST['dept'];
+   	$dept = $_SESSION['dept'];
    
    	switch ($dept) {
        		case "cse":
@@ -42,20 +48,18 @@
    	$result = $conn->query($sql);
    	if(mysqli_affected_rows($conn) === 0)
    	{
-   		$response["error"] = TRUE;
-   		$response["error_msg"] = "No Such Projector Booked";
+   		 $error = 'No such projector booked';
+   		$res = array('msg'=>'0');
+   		$msg = json_encode($res);
+   		echo $msg;
    	
    	}
    	else
    	{
-   		$response["error"] = FALSE;
+   		//success popup
+   		$res = array('msg'=>'1');
+   		$msg = json_encode($res);
+   		echo $msg;
    	}
    }
-   else{
-   	$response["error"] = TRUE;
-   	$response["error_msg"] = "Invalid Parameters";
-   
-   }
-   
-   echo json_encode($response);
    ?>
