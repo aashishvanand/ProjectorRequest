@@ -122,6 +122,7 @@ public class DetailedView extends AppCompatActivity {
             session.setLogin(false);
             getApplicationContext().getSharedPreferences(PREF, 0).edit().clear().apply();
             Intent i = new Intent(this, Login.class);
+            MainActivity.dept_projector.clear();
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
         }
