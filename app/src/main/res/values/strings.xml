@@ -96,6 +96,10 @@
     <string name="successfully_deleted" translatable="true">Successfully Deleted</string>
     <string name="get_projector" translatable="true">Updating Projector list</string>
     <string name="no_booking" translatable="true">No Booking Still!</string>
+    <string name="close" translatable="true">Are you sure you want to close the app?</string>
+    <string name="exit" translatable="true">Exit</string>
+    <string name="yes" translatable="true">Yes</string>
+    <string name="no" translatable="true">No</string>
 
 
 </resources>
