@@ -83,6 +83,7 @@
     <string name="unknown" translatable="true">Unknown Error!</string>
     <string name="select_proper_value" translatable="true">Select Proper Value</string>
     <string name="check_selection" translatable="true">Check your Selection</string>
+    <string name="login_check" translatable="true">StaffCode and Password are required!</string>
 
     <string name="select_hour" translatable="true">Select Hour</string>
     <string name="select_projector" translatable="true">Select Projector</string>

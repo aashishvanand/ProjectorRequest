@@ -56,7 +56,17 @@ public class Login extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if(code.getText().toString().equals("") || password.getText().toString().equals(""))
+            {
+                SnackbarLogin = Snackbar
+                        .make(coordinatorLayoutLogin, getString(R.string.wrong_user_or_password_combination), Snackbar.LENGTH_SHORT);
+                SnackbarLogin.show();
+            }
+            else
+            {
                 checkLogin(code.getText().toString(), password.getText().toString());
+            }
+
             }
         });
     }
