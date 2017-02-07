@@ -1,6 +1,8 @@
 package com.aashish.projectorrequest;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -60,8 +62,10 @@ public class MainActivity extends AppCompatActivity {
             session = new SessionManager(getApplicationContext());
 
             pDialog = new ProgressDialog(MainActivity.this);
-            pDialog.setTitle(getString(R.string.get_projector));
+            pDialog.setCancelable(false);
+
             getProjectorData();
+
             day1_imageView = (ImageView) findViewById(R.id.day1_imageView);
             day2_imageView = (ImageView) findViewById(R.id.day2_imageView);
             day3_imageView = (ImageView) findViewById(R.id.day3_imageView);
@@ -247,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
     private void getProjectorData() {
         // Tag used to cancel the request
         String tag_string_req = "update_proj_list";
+
         pDialog.setMessage("Updating Projector");
         showDialog();
 
@@ -316,6 +321,24 @@ public class MainActivity extends AppCompatActivity {
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Are you sure you want to close this activity?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
 }

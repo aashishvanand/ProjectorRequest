@@ -56,14 +56,14 @@
         <item>D</item>
     </string-array>
 
-    <string name="login_btn">Login</string>
-    <string name="request">Request</string>
-    <string name="timetable">Timetable</string>
-    <string name="wrong_user_or_password_combination">wrong_user_or_password_combination</string>
-    <string name="login">Logging in..</string>
-    <string name="logout">Logout</string>
-    <string name="issue">Sorry! Connectivity Issue</string>
-    <string name="get">Getting Timetable</string>
+    <string name="login_btn" translatable="true">Login</string>
+    <string name="request" translatable="true">Request</string>
+    <string name="timetable" translatable="true">Timetable</string>
+    <string name="wrong_user_or_password_combination" translatable="true">wrong_user_or_password_combination</string>
+    <string name="login" translatable="true">Logging in..</string>
+    <string name="logout" translatable="true">Logout</string>
+    <string name="issue" translatable="true">Sorry! Connectivity Issue</string>
+    <string name="get" translatable="true">Getting Timetable</string>
 
     <string name="hour1">Hour 1</string>
     <string name="hour2">Hour 2</string>
@@ -75,26 +75,26 @@
     <string name="hour8">Hour 8</string>
     <string name="yyyy_mm_dd">yyyy-mm-dd</string>
 
-    <string name="password">Password</string>
-    <string name="staff_code">Code</string>
-    <string name="delete_request">Cancel Booking!</string>
-    <string name="delete_menu">Cancel Projector</string>
-    <string name="check_connection">Check Your Connection and Retry Later</string>
-    <string name="unknown">Unknown Error!</string>
-    <string name="select_proper_value">Select Proper Value</string>
-    <string name="check_selection">Check your Selection</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="staff_code" translatable="false">Code</string>
+    <string name="delete_request" translatable="true">Cancel Booking!</string>
+    <string name="delete_menu" translatable="true">Cancel Projector</string>
+    <string name="check_connection" translatable="true">Check Your Connection and Retry Later</string>
+    <string name="unknown" translatable="true">Unknown Error!</string>
+    <string name="select_proper_value" translatable="true">Select Proper Value</string>
+    <string name="check_selection" translatable="true">Check your Selection</string>
 
-    <string name="select_hour">Select Hour</string>
-    <string name="select_projector">Select Projector</string>
-    <string name="select_year">Select Year</string>
-    <string name="select_dept">Select Department</string>
-    <string name="select_section">Select Section</string>
-    <string name="select_date">Select Date</string>
-    <string name="booked_successfully">Booked Successfully</string>
-    <string name="unknown_error">Unknown Error</string>
-    <string name="successfully_deleted">Successfully Deleted</string>
-    <string name="get_projector">Updating Projector list</string>
-    <string name="no_booking">No Booking Still!</string>
+    <string name="select_hour" translatable="true">Select Hour</string>
+    <string name="select_projector" translatable="true">Select Projector</string>
+    <string name="select_year" translatable="true">Select Year</string>
+    <string name="select_dept" translatable="true">Select Department</string>
+    <string name="select_section" translatable="true">Select Section</string>
+    <string name="select_date" translatable="true">Select Date</string>
+    <string name="booked_successfully" translatable="true">Booked Successfully</string>
+    <string name="unknown_error" translatable="true">Unknown Error</string>
+    <string name="successfully_deleted" translatable="true">Successfully Deleted</string>
+    <string name="get_projector" translatable="true">Updating Projector list</string>
+    <string name="no_booking" translatable="true">No Booking Still!</string>
 
 
 </resources>
