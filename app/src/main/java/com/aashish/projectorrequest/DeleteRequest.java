@@ -101,7 +101,25 @@ public class DeleteRequest extends AppCompatActivity {
                 String hour = period_spinner.getSelectedItem().toString();
                 String projector = projector_spinner.getSelectedItem().toString();
                 String date = date1.getText().toString();
-                deleteData(hour, date, projector, code);
+
+                if (hour.equalsIgnoreCase(getResources().getString(R.string.select_hour)) || projector.equalsIgnoreCase(getResources().getString(R.string.select_projector)) || date1.equals("")) {
+                        SnackbarDelete = Snackbar
+                                .make(coordinatorLayoutDelete, getResources().getString(R.string.check_selection), Snackbar.LENGTH_SHORT);
+
+
+                    if (hour.equalsIgnoreCase(getResources().getString(R.string.select_hour))) {
+                        period_spinner.setError(getResources().getString(R.string.select_proper_value));
+                    }
+
+                    if (projector.equalsIgnoreCase(getResources().getString(R.string.select_projector))) {
+                        period_spinner.setError(getResources().getString(R.string.select_proper_value));
+                    }
+
+                }
+                else {
+                    deleteData(hour, date, projector, code);
+                }
+
 
             }
         });

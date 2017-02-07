@@ -114,19 +114,19 @@ public class Request extends AppCompatActivity {
                         period_spinner.setError(getResources().getString(R.string.select_proper_value));
                     }
 
-                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_projector))) {
+                    if (projector.equalsIgnoreCase(getResources().getString(R.string.select_projector))) {
                         period_spinner.setError(getResources().getString(R.string.select_proper_value));
                     }
 
-                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_dept))) {
+                    if (department.equalsIgnoreCase(getResources().getString(R.string.select_dept))) {
                         period_spinner.setError(getResources().getString(R.string.select_proper_value));
                     }
 
-                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_section))) {
+                    if (section.equalsIgnoreCase(getResources().getString(R.string.select_section))) {
                         period_spinner.setError(getResources().getString(R.string.select_proper_value));
                     }
 
-                    if (period.equalsIgnoreCase(getResources().getString(R.string.select_year))) {
+                    if (year.equalsIgnoreCase(getResources().getString(R.string.select_year))) {
                         period_spinner.setError(getResources().getString(R.string.select_proper_value));
                     }
 
