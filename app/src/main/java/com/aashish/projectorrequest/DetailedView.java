@@ -199,10 +199,6 @@ public class DetailedView extends AppCompatActivity {
                             }
                         }
 
-                        if (text1.equals("")&&text2.equals("")&&text3.equals("")&&text4.equals("")&&text5.equals("")&&text6.equals("")&&text7.equals("")&&text8.equals(""))
-                        {
-                            linearLayout.setVisibility(LinearLayout.VISIBLE);
-                        }
 
                         if (!text1.equals("")) {
                             hour1header.setVisibility(View.VISIBLE);
@@ -253,16 +249,13 @@ public class DetailedView extends AppCompatActivity {
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");
+                        linearLayout.setVisibility(LinearLayout.VISIBLE);
                         SnackbarMainActivity = Snackbar
                                 .make(coordinatorLayoutMainActivity, errorMsg, Snackbar.LENGTH_SHORT);
                         SnackbarMainActivity.show();
                     }
                 } catch (JSONException e) {
                     // JSON error
-                    if (e.toString().equalsIgnoreCase("No Projector Booked Still!"))
-                    {
-                        linearLayout.setVisibility(LinearLayout.VISIBLE);
-                    }
                     SnackbarMainActivity = Snackbar
                             .make(coordinatorLayoutMainActivity, e.toString(), Snackbar.LENGTH_SHORT);
                     SnackbarMainActivity.show();
