@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,7 +42,7 @@ public class Request extends AppCompatActivity {
     String[] period_array = {"1", "2", "3", "4", "5", "6", "7", "8"};
     String[] year_array = {"I", "II", "III", "IV"};
     String[] department_array = {"AERO", "AUTO", "BTECH", "BMED", "CHEM", "CIVIL", "CSE", "EEE", "ECE", "IT", "MECH", "MTRCS", "HS", "PE", "EDC", "MBA", "MCA"};
-    String[] section_array = {"A", "B", "C", "D"};
+    String[] section_array = {"A", "B", "C", "D", "E"};
     Button submit;
     Snackbar SnackbarRequest;
     CoordinatorLayout coordinatorLayoutRequest;
@@ -149,7 +148,6 @@ public class Request extends AppCompatActivity {
                 CalendarDatePickerDialogFragment cdp = new CalendarDatePickerDialogFragment();
                 cdp.show(Request.this.getSupportFragmentManager(), "Calender");
                 cdp.setDateRange(minDate, null);
-
                 cdp.setOnDateSetListener(new CalendarDatePickerDialogFragment.OnDateSetListener() {
                     @Override
                     public void onDateSet(CalendarDatePickerDialogFragment dialog, int year, int monthOfYear, int dayOfMonth) {
@@ -252,27 +250,13 @@ public class Request extends AppCompatActivity {
             pDialog.dismiss();
     }
 
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.delete) {
-            Intent i = new Intent(Request.this, DeleteRequest.class);
-            startActivity(i);
-            return true;
-        }
-
-        if (id == R.id.logout) {
-            Intent i = new Intent(Request.this, Login.class);
-            startActivity(i);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onBackPressed() {
+        super.onBackPressed();
+        MainActivity.dept_projector.clear();
+        this.finish();
     }
+
 
 }

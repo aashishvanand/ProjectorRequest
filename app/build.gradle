@@ -7,8 +7,8 @@ android {
         applicationId "com.aashish.projectorrequest"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 2
-        versionName "1.1"
+        versionCode 4
+        versionName "1.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -18,11 +18,11 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'URL_get', '"http://aashish.noip.me/projector/android/get.php"'
-        it.buildConfigField 'String', 'URL_request', '"http://aashish.noip.me/projector/android/request.php"'
-        it.buildConfigField 'String', 'URL_login', '"http://aashish.noip.me/projector/android/login.php"'
-        it.buildConfigField 'String', 'URL_delete', '"http://aashish.noip.me/projector/android/delete.php"'
-        it.buildConfigField 'String', 'URL_update', '"http://aashish.noip.me/projector/android/update.php"'
+        it.buildConfigField 'String', 'URL_get', '"https://aws.aashishvanand.me/projector/android/get.php"'
+        it.buildConfigField 'String', 'URL_request', '"https://aws.aashishvanand.me/projector/android/request.php"'
+        it.buildConfigField 'String', 'URL_login', '"https://aws.aashishvanand.me/projector/android/login.php"'
+        it.buildConfigField 'String', 'URL_delete', '"https://aws.aashishvanand.me/projector/android/delete.php"'
+        it.buildConfigField 'String', 'URL_update', '"https://aws.aashishvanand.me/projector/android/update.php"'
     }
 }
 

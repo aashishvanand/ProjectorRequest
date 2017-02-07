@@ -33,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/date"
-                    android:hint="@string/yyyy_mm_dd"
+                    android:hint="@string/select_date"
                     android:maxLength="10"
                     android:maxLines="1"
                     android:onClick="setDate"

@@ -8,9 +8,11 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -46,6 +48,7 @@ public class DetailedView extends AppCompatActivity {
     SharedPreferences prefs;
     private FloatingActionButton fab;
     private ProgressDialog pDialog;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class DetailedView extends AppCompatActivity {
         hour8header = (TextView) findViewById(R.id.hour8header);
 
         coordinatorLayoutMainActivity = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutMainActivity);
+        linearLayout = (LinearLayout) findViewById(R.id.nobooking);
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
@@ -117,9 +121,9 @@ public class DetailedView extends AppCompatActivity {
         if (id == R.id.logout) {
             session.setLogin(false);
             getApplicationContext().getSharedPreferences(PREF, 0).edit().clear().apply();
-            startActivity(new Intent(this, com.aashish.projectorrequest.Login.class));
-            finish();
-            return true;
+            Intent i = new Intent(this, Login.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -194,6 +198,11 @@ public class DetailedView extends AppCompatActivity {
                             }
                         }
 
+                        if (text1.equals("")&&text2.equals("")&&text3.equals("")&&text4.equals("")&&text5.equals("")&&text6.equals("")&&text7.equals("")&&text8.equals(""))
+                        {
+                            linearLayout.setVisibility(LinearLayout.VISIBLE);
+                        }
+
                         if (!text1.equals("")) {
                             hour1header.setVisibility(View.VISIBLE);
                             hour1.setText(text1);
@@ -249,6 +258,10 @@ public class DetailedView extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     // JSON error
+                    if (e.toString().equalsIgnoreCase("No Projector Booked Still!"))
+                    {
+                        linearLayout.setVisibility(LinearLayout.VISIBLE);
+                    }
                     SnackbarMainActivity = Snackbar
                             .make(coordinatorLayoutMainActivity, e.toString(), Snackbar.LENGTH_SHORT);
                     SnackbarMainActivity.show();
@@ -287,6 +300,13 @@ public class DetailedView extends AppCompatActivity {
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MainActivity.dept_projector.clear();
+        this.finish();
     }
 
 }

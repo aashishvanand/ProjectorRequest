@@ -108,6 +108,13 @@ public class DeleteRequest extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MainActivity.dept_projector.clear();
+        this.finish();
+    }
+
     private void deleteData(final String hour, final String date, final String projector, final String code) {
         // Tag used to cancel the request
         String tag_string_req = "del_proj";

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREF = "Projectrequest";
     String dept;
     static ArrayList<String> dept_projector = new ArrayList<String>();
+    SessionManager session;
 
 
     @Override
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             coordinatorLayoutMainActivity = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutMainActivity);
             SharedPreferences prefs = getSharedPreferences(PREF, MODE_PRIVATE);
             dept = prefs.getString("dept", null);
+            session = new SessionManager(getApplicationContext());
 
             pDialog = new ProgressDialog(MainActivity.this);
             pDialog.setTitle(getString(R.string.get_projector));
@@ -142,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day1);
                     startActivity(intent);
-                    finish();
                 }
             });
 
@@ -152,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day2);
                     startActivity(intent);
-                    finish();
                 }
             });
 
@@ -162,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day3);
                     startActivity(intent);
-                    finish();
 
                 }
             });
@@ -173,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day4);
                     startActivity(intent);
-                    finish();
                 }
             });
 
@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day5);
                     startActivity(intent);
-                    finish();
                 }
             });
 
@@ -193,12 +192,38 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), DetailedView.class);
                     intent.putExtra("date", day6);
                     startActivity(intent);
-                    finish();
                 }
             });
 
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.date, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.logout) {
+            session.setLogin(false);
+            getApplicationContext().getSharedPreferences(PREF, 0).edit().clear().apply();
+            Intent i = new Intent(this, Login.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     public boolean isOnline() {
 
