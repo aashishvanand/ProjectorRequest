@@ -326,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(R.drawable.ic_exit)
                 .setTitle(getResources().getString(R.string.exit))
                 .setMessage(getResources().getString(R.string.close))
                 .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener()
