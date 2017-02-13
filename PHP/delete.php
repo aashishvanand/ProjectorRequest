@@ -34,14 +34,56 @@
    	$dept = $_SESSION['dept'];
    
    	switch ($dept) {
-       		case "cse":
+      	case "aero":
+   		$sql = "DELETE FROM `aero.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+       	case "auto":
+   		$sql = "DELETE FROM `auto.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "btech":
+   		$sql = "DELETE FROM `btech.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "bmed":
+   		$sql = "DELETE FROM `bmed.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "chem":
+   		$sql = "DELETE FROM `chem.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "civil":
+   		$sql = "DELETE FROM `civil.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;			
+       	case "cse":
    		$sql = "DELETE FROM `cse.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
            	break;
-       	case "mech":
+		case "eee":
+   		$sql = "DELETE FROM `eee.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "ece":
+   		$sql = "DELETE FROM `ece.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "it":
+   		$sql = "DELETE FROM `it.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "mech":
    		$sql = "DELETE FROM `mech.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
            	break;
-       	case "cake":
-           	echo "i is cake";
+		case "mtrcs":
+   		$sql = "DELETE FROM `mtrcs.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "hd":
+   		$sql = "DELETE FROM `hd.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "pe":
+   		$sql = "DELETE FROM `pe.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "edc":
+   		$sql = "DELETE FROM `edc.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "mba":
+   		$sql = "DELETE FROM `mba.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
+           	break;
+		case "mca":
+   		$sql = "DELETE FROM `mca.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
            	break;
    	}
    

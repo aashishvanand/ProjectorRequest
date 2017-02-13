@@ -1,6 +1,6 @@
 <html>
    <head>
-      <title>Projector Request - CSE</title>
+      <title>Projector Request - EEE</title>
       <style type="text/css">
          table {
          border-collapse: collapse;
@@ -28,9 +28,9 @@
       }
       $today = date('Y-m-d');
       $thisweek = date('Y-m-d', strtotime('+6 days'));
-      $sql = "SELECT DISTINCT date FROM `cse.projector` WHERE (date BETWEEN '$today' AND '$thisweek') order by date asc";
+      $sql = "SELECT DISTINCT date FROM `eee.projector` WHERE (date BETWEEN '$today' AND '$thisweek') order by date asc";
       $result = mysqli_query($conn, $sql);
-      echo '<h1>Projector Request - CSE</h1>';
+      echo '<h1>Projector Request - EEE</h1>';
       
       if (mysqli_num_rows($result) > 0) { 
       echo '<div style="overflow-x:auto;">';
@@ -40,7 +40,7 @@
       	$hours = array_fill(0,8,'AVAIL');
       	$staff = array_fill(0,8,'NULL');
       	$date= $row['date'];
-      	$sql_date_fetch = "SELECT * FROM `cse.projector` WHERE date='$date'";
+      	$sql_date_fetch = "SELECT * FROM `eee.projector` WHERE date='$date'";
       	$result_date = mysqli_query($conn, $sql_date_fetch);
       
       	while($row_date = mysqli_fetch_assoc($result_date)) {

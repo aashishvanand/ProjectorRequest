@@ -28,12 +28,57 @@
    	$dept = $_POST['dept'];
    
    	switch ($dept) {
-       		case "cse":
-   			$sql = "SELECT * FROM `cse.projector` WHERE date = '$today' ORDER BY hour";
-           		break;
-       		case "mech":
-   			$sql = "SELECT * FROM `mech.projector` WHERE date = '$today' ORDER BY hour";
-           		break;
+       	case "aero":
+			$sql = "SELECT * FROM `aero.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+       	case "auto":
+			$sql = "SELECT * FROM `auto.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "btech":
+			$sql = "SELECT * FROM `btech.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "bmed":
+			$sql = "SELECT * FROM `bmed.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "chem":
+			$sql = "SELECT * FROM `chem.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "civil":
+			$sql = "SELECT * FROM `civil.projector` WHERE date = '$today' ORDER BY hour";
+           	break;			
+       	case "cse":
+			$sql = "SELECT * FROM `cse.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "eee":
+			$sql = "SELECT * FROM `eee.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "ece":
+			$sql = "SELECT * FROM `ece.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "it":
+			$sql = "SELECT * FROM `it.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "mech":
+			$sql = "SELECT * FROM `mech.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "mtrcs":
+			$sql = "SELECT * FROM `mtrcs.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "hd":
+			$sql = "SELECT * FROM `hd.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "pe":
+			$sql = "SELECT * FROM `pe.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "edc":
+			$sql = "SELECT * FROM `edc.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "mba":
+			$sql = "SELECT * FROM `mba..projector` WHERE date = '$today' ORDER BY hour";
+           	break;
+		case "mca":
+			$sql = "SELECT * FROM `mca.projector` WHERE date = '$today' ORDER BY hour";
+           	break;
        	}
    
    	$result = $conn->query($sql);

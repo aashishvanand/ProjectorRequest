@@ -1,6 +1,6 @@
 <html>
    <head>
-      <title>Projector Request</title>
+      <title>Projector Request - Mechanical</title>
       <style type="text/css">
          table {
          border-collapse: collapse;
@@ -30,7 +30,7 @@
       $thisweek = date('Y-m-d', strtotime('+6 days'));
       $sql = "SELECT DISTINCT date FROM `mech.projector` WHERE (date BETWEEN '$today' AND '$thisweek') order by date asc";
       $result = mysqli_query($conn, $sql);
-      echo '<h1>Projector Request</h1>';
+      echo '<h1>Projector Request - Mechanical</h1>';
       
       if (mysqli_num_rows($result) > 0) { 
       echo '<div style="overflow-x:auto;">';
