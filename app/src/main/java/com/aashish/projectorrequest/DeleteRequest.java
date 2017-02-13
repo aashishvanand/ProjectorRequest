@@ -129,7 +129,6 @@ public class DeleteRequest extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        MainActivity.dept_projector.clear();
         this.finish();
     }
 

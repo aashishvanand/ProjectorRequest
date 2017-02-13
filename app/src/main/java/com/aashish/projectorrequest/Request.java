@@ -41,7 +41,7 @@ public class Request extends AppCompatActivity {
     MaterialSpinner period_spinner, projector_spinner, year_spinner, department_spinner, section_spinner;
     String[] period_array = {"1", "2", "3", "4", "5", "6", "7", "8"};
     String[] year_array = {"I", "II", "III", "IV"};
-    String[] department_array = {"AERO", "AUTO", "BTECH", "BMED", "CHEM", "CIVIL", "CSE", "EEE", "ECE", "IT", "MECH", "MTRCS", "HS", "PE", "EDC", "MBA", "MCA"};
+    String[] department_array = {"aero", "auto", "btech", "bmed", "chem", "civil", "cse", "eee", "ece", "it", "mech", "mtrcs", "hd", "pe", "edc", "mba", "mca"};
     String[] section_array = {"A", "B", "C", "D", "E"};
     Button submit;
     Snackbar SnackbarRequest;

@@ -173,7 +173,6 @@ public class DetailedView extends AppCompatActivity {
                             switch (hour) {
                                 case "1":
                                     text1 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
-
                                     break;
                                 case "2":
                                     text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";

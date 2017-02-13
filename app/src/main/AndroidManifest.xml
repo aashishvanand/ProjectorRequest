@@ -33,8 +33,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/request"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".DeleteRequest"
             android:configChanges="orientation|keyboardHidden|screenSize"
