@@ -3,6 +3,7 @@ package com.aashish.projectorrequest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -20,14 +21,17 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.security.AccessController.getContext;
+
 
 public class Login extends AppCompatActivity {
 
     public static final String PREF = "Projectrequest";
-    EditText code, password;
+    CustomEditText code, password;
     CoordinatorLayout coordinatorLayoutLogin;
     Snackbar SnackbarLogin;
     Button submit;
+    Typeface tf_regular;
     private ProgressDialog pDialog;
     private SessionManager session;
 
@@ -37,6 +41,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         coordinatorLayoutLogin = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutLogin);
+
+
         pDialog = new ProgressDialog(Login.this);
         pDialog.setTitle(getString(R.string.login));
 
@@ -49,8 +55,8 @@ public class Login extends AppCompatActivity {
             finish();
         }
 
-        code = (EditText) findViewById(R.id.code);
-        password = (EditText) findViewById(R.id.password);
+        code = (CustomEditText) findViewById(R.id.code);
+        password = (CustomEditText) findViewById(R.id.password);
         submit = (Button) findViewById(R.id.submit);
 
         submit.setOnClickListener(new View.OnClickListener() {
