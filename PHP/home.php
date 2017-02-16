@@ -85,14 +85,58 @@
                         $thisweek = date('Y-m-d', strtotime('+6 days'));
                         $staffcode = $_SESSION['username'];
                         switch ($_SESSION['dept']) {
-                            		case "cse":
-                        			$sql = "SELECT DISTINCT date FROM `cse.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
-                                		break;
-                            		case "mech":
-                        			$sql = "SELECT DISTINCT date FROM `mech.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
-                        			break;
+                            		case "aero":
+										$sql = "SELECT DISTINCT date FROM `aero.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "auto":
+										$sql = "SELECT DISTINCT date FROM `auto.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "btech":
+										$sql = "SELECT DISTINCT date FROM `btech.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "bmed":
+										$sql = "SELECT DISTINCT date FROM `bmed.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "chem":
+										$sql = "SELECT DISTINCT date FROM `chem.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "civil":
+										$sql = "SELECT DISTINCT date FROM `civil.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;			
+									case "cse":
+										$sql = "SELECT DISTINCT date FROM `cse.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "eee":
+										$sql = "SELECT DISTINCT date FROM `eee.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "ece":
+										$sql = "SELECT DISTINCT date FROM `ece.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "it":
+										$sql = "SELECT DISTINCT date FROM `it.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "mech":
+										$sql = "SELECT DISTINCT date FROM `mech.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "mtrcs":
+										$sql = "SELECT DISTINCT date FROM `mtrcs.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "hd":
+										$sql = "SELECT DISTINCT date FROM `hd.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "pe":
+										$sql = "SELECT DISTINCT date FROM `pe.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "edc":
+										$sql = "SELECT DISTINCT date FROM `edc.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "mba":
+										$sql = "SELECT DISTINCT date FROM `mba.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
+									case "mca":
+										$sql = "SELECT DISTINCT date FROM `mca.projector` WHERE (date BETWEEN '$today' AND '$thisweek') AND staffcode = '$staffcode' order by date asc";
+										break;
                             	}
-                        
                         
                         $result = mysqli_query($conn, $sql);
                         echo '<h4>My Requests</h4>';
@@ -107,12 +151,57 @@
                         	$date= $row['date'];
                         
                         switch ($_SESSION['dept']) {
-                            		case "cse":
-                        			$sql_date_fetch = "SELECT * FROM `cse.projector` WHERE date='$date' AND staffcode = '$staffcode'";
-                        			break;
-                            		case "mech":
-                        			$sql_date_fetch = "SELECT * FROM `mech.projector` WHERE date='$date' AND staffcode = '$staffcode'";
-                        			break;
+                            		case "aero":
+										$sql_date_fetch = "SELECT * FROM `aero.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "auto":
+										$sql_date_fetch = "SELECT * FROM `auto.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "btech":
+										$sql_date_fetch = "SELECT * FROM `btech.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "bmed":
+										$sql_date_fetch = "SELECT * FROM `bmed.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "chem":
+										$sql_date_fetch = "SELECT * FROM `chem.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "civil":
+										$sql_date_fetch = "SELECT * FROM `civil.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;			
+									case "cse":
+										$sql_date_fetch = "SELECT * FROM `cse.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "eee":
+										$sql_date_fetch = "SELECT * FROM `eee.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "ece":
+										$sql_date_fetch = "SELECT * FROM `ece.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "it":
+										$sql_date_fetch = "SELECT * FROM `it.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "mech":
+										$sql_date_fetch = "SELECT * FROM `mech.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "mtrcs":
+										$sql_date_fetch = "SELECT * FROM `mtrcs.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "hd":
+										$sql_date_fetch = "SELECT * FROM `hd.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "pe":
+										$sql_date_fetch = "SELECT * FROM `pe.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "edc":
+										$sql_date_fetch = "SELECT * FROM `edc.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "mba":
+										$sql_date_fetch = "SELECT * FROM `mba.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
+									case "mca":
+										$sql_date_fetch = "SELECT * FROM `mca.projector` WHERE date='$date' AND staffcode = '$staffcode'";
+										break;
                             	}
                         
                         	$result_date = mysqli_query($conn, $sql_date_fetch);
