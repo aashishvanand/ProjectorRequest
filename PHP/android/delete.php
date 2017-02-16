@@ -28,10 +28,10 @@
    	$dept = $_POST['dept'];
    
    	switch ($dept) {
-       	case "aero":
+       		case "aero":
 			$sql = "DELETE FROM `aero.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
 			break;
-       	case "auto":
+       		case "auto":
 			$sql = "DELETE FROM `auto.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
            	break;
 		case "btech":
@@ -46,7 +46,7 @@
 		case "civil":
 			$sql = "DELETE FROM `civil.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
 			break;			
-       	case "cse":
+    	   	case "cse":
 			$sql = "DELETE FROM `cse.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
 			break;
 		case "eee":
@@ -66,12 +66,6 @@
 			break;
 		case "hd":
 			$sql = "DELETE FROM `hd.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
-			break;
-		case "pe":
-			$sql = "DELETE FROM `pe.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
-			break;
-		case "edc":
-			$sql = "DELETE FROM `edc.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
 			break;
 		case "mba":
 			$sql = "DELETE FROM `mba.projector` WHERE date = '$date' AND hour = '$hour' AND staffcode ='$code' AND projector ='$projector'";
