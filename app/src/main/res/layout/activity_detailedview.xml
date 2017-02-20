@@ -19,6 +19,153 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin">
 
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:weightSum="5">
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/hour"
+                        android:layout_column="1"
+                        android:layout_weight="1"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tt1"
+                        android:gravity="center"
+                       android:layout_column="2"
+                        android:layout_weight="0.5"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tt2"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="3"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tt3"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="4"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tt4"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="5"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tt5"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="6"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tt6"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="7"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tt7"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:layout_column="8"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/tt8"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="9"/>
+
+                </TableRow>
+
+                <TableRow android:layout_height="1px" android:background="#BDBDBD">
+                    <TextView android:layout_span="2" android:layout_height="1px"
+                        android:layout_width="fill_parent" android:text=""/>
+                </TableRow>
+
+                <TableRow android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:weightSum="5">
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/free_projector"
+                        android:layout_column="1"
+                        android:layout_weight="1"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/hour1free"
+                        android:gravity="center"
+                        android:layout_column="2"
+                        android:layout_weight="0.5"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/hour2free"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="3"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/hour3free"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="4"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/hour4free"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="5"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/hour5free"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="6"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/hour6free"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="7"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/hour7free"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="8"/>
+
+                    <TextView android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/hour8free"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_column="9"/>
+
+                </TableRow>
+
+            </TableLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

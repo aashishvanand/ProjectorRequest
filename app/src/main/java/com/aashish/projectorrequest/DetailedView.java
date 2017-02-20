@@ -38,6 +38,7 @@ public class DetailedView extends AppCompatActivity {
     SessionManager session;
     TextView hour1header, hour2header, hour3header, hour4header, hour5header, hour6header, hour7header, hour8header;
     TextView hour1, hour2, hour3, hour4, hour5, hour6, hour7, hour8;
+    TextView hour1free,hour2free,hour3free,hour4free,hour5free,hour6free,hour7free,hour8free;
     ArrayList<String> hourArray = new ArrayList<String>();
     ArrayList<String> staffcodeArray = new ArrayList<String>();
     ArrayList<String> projectorArray = new ArrayList<String>();
@@ -73,6 +74,15 @@ public class DetailedView extends AppCompatActivity {
         hour6header = (TextView) findViewById(R.id.hour6header);
         hour7header = (TextView) findViewById(R.id.hour7header);
         hour8header = (TextView) findViewById(R.id.hour8header);
+
+        hour1free = (TextView) findViewById(R.id.hour1free);
+        hour2free = (TextView) findViewById(R.id.hour2free);
+        hour3free = (TextView) findViewById(R.id.hour3free);
+        hour4free = (TextView) findViewById(R.id.hour4free);
+        hour5free = (TextView) findViewById(R.id.hour5free);
+        hour6free = (TextView) findViewById(R.id.hour6free);
+        hour7free = (TextView) findViewById(R.id.hour7free);
+        hour8free = (TextView) findViewById(R.id.hour8free);
 
         coordinatorLayoutMainActivity = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutMainActivity);
         linearLayout = (LinearLayout) findViewById(R.id.nobooking);
@@ -167,37 +177,55 @@ public class DetailedView extends AppCompatActivity {
                         }
 
                         String hour;
+                        int totalprojector = MainActivity.dept_projector.size();
+                        int count1=0,count2=0,count3=0,count4=0,count5=0,count6=0,count7=0,count8=0;
                         String text1 = "", text2 = "", text3 = "", text4 = "", text5 = "", text6 = "", text7 = "", text8 = "";
                         for (int i = 0; i < hourArray.size(); i++) {
                             hour = hourArray.get(i);
                             switch (hour) {
                                 case "1":
+                                    count1++;
                                     text1 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
                                     break;
                                 case "2":
+                                    count2++;
                                     text2 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
                                     break;
                                 case "3":
+                                    count3++;
                                     text3 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
                                     break;
                                 case "4":
+                                    count4++;
                                     text4 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
                                     break;
                                 case "5":
+                                    count5++;
                                     text5 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
                                     break;
                                 case "6":
+                                    count6++;
                                     text6 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
                                     break;
                                 case "7":
+                                    count7++;
                                     text7 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
                                     break;
                                 case "8":
+                                    count8++;
                                     text8 += projectorArray.get(i) + " Booked by " + staffcodeArray.get(i) + " for " + yearArray.get(i) + " " + departmentArray.get(i) + " " + sectionArray.get(i) + "\n";
                                     break;
                             }
                         }
 
+                        hour1free.setText(totalprojector-count1);
+                        hour2free.setText(totalprojector-count2);
+                        hour3free.setText(totalprojector-count3);
+                        hour4free.setText(totalprojector-count4);
+                        hour5free.setText(totalprojector-count5);
+                        hour6free.setText(totalprojector-count6);
+                        hour7free.setText(totalprojector-count7);
+                        hour8free.setText(totalprojector-count8);
 
                         if (!text1.equals("")) {
                             hour1header.setVisibility(View.VISIBLE);

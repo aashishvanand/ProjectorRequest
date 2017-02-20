@@ -74,6 +74,16 @@
     <string name="hour7">Hour 7</string>
     <string name="hour8">Hour 8</string>
     <string name="yyyy_mm_dd">yyyy-mm-dd</string>
+    <string name="tt1">1</string>
+    <string name="tt2">2</string>
+    <string name="tt3">3</string>
+    <string name="tt4">4</string>
+    <string name="tt5">5</string>
+    <string name="tt6">6</string>
+    <string name="tt7">7</string>
+    <string name="tt8">8</string>
+    <string name="free_projector"> Free Projector</string>
+    <string name="hour">Hour</string>
 
     <string name="password" translatable="false">Password</string>
     <string name="staff_code" translatable="false">Code</string>
