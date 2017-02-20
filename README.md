@@ -2,7 +2,7 @@
 
 SQL stmts
 
-CREATE DATABASE IF NOT EXISTS `projector` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `rec` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `projector`;
 
 CREATE TABLE `login` (
