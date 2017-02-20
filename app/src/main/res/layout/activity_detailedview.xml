@@ -161,7 +161,6 @@
                         android:gravity="center"
                         android:layout_weight="0.5"
                         android:layout_column="9"/>
-
                 </TableRow>
 
             </TableLayout>
