@@ -31,12 +31,12 @@
         <activity
             android:name=".DetailedView"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/request"
+            android:label="@string/timetable"
             android:screenOrientation="portrait" />
         <activity
             android:name=".DeleteRequest"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/request"
+            android:label="@string/delete_request"
             android:screenOrientation="portrait" />
 
     </application>

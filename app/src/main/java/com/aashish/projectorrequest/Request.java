@@ -191,7 +191,6 @@ public class Request extends AppCompatActivity {
                         SnackbarRequest.show();
                         MainActivity.dept_projector.clear();
                         Intent i = new Intent(Request.this, MainActivity.class);
-                        MainActivity.dept_projector.clear();
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(i);
 
