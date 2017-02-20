@@ -33,6 +33,8 @@ import java.util.Map;
 public class DetailedView extends AppCompatActivity {
 
     public static final String PREF = "Projectrequest";
+    int totalprojector = MainActivity.dept_projector.size();
+    int count1=0,count2=0,count3=0,count4=0,count5=0,count6=0,count7=0,count8=0;
     CoordinatorLayout coordinatorLayoutMainActivity;
     Snackbar SnackbarMainActivity;
     SessionManager session;
@@ -173,12 +175,9 @@ public class DetailedView extends AppCompatActivity {
                             yearArray.add(yearJSONArray.getString(i));
                             departmentArray.add(departmentJSONArray.getString(i));
                             sectionArray.add(sectionJSONArray.getString(i));
-
                         }
 
                         String hour;
-                        int totalprojector = MainActivity.dept_projector.size();
-                        int count1=0,count2=0,count3=0,count4=0,count5=0,count6=0,count7=0,count8=0;
                         String text1 = "", text2 = "", text3 = "", text4 = "", text5 = "", text6 = "", text7 = "", text8 = "";
                         for (int i = 0; i < hourArray.size(); i++) {
                             hour = hourArray.get(i);
@@ -218,14 +217,14 @@ public class DetailedView extends AppCompatActivity {
                             }
                         }
 
-                        hour1free.setText(totalprojector-count1);
-                        hour2free.setText(totalprojector-count2);
-                        hour3free.setText(totalprojector-count3);
-                        hour4free.setText(totalprojector-count4);
-                        hour5free.setText(totalprojector-count5);
-                        hour6free.setText(totalprojector-count6);
-                        hour7free.setText(totalprojector-count7);
-                        hour8free.setText(totalprojector-count8);
+                        hour1free.setText(String.valueOf(totalprojector-count1));
+                        hour2free.setText(String.valueOf(totalprojector-count2));
+                        hour3free.setText(String.valueOf(totalprojector-count3));
+                        hour4free.setText(String.valueOf(totalprojector-count4));
+                        hour5free.setText(String.valueOf(totalprojector-count5));
+                        hour6free.setText(String.valueOf(totalprojector-count6));
+                        hour7free.setText(String.valueOf(totalprojector-count7));
+                        hour8free.setText(String.valueOf(totalprojector-count8));
 
                         if (!text1.equals("")) {
                             hour1header.setVisibility(View.VISIBLE);
@@ -276,6 +275,14 @@ public class DetailedView extends AppCompatActivity {
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("error_msg");
+                        hour1free.setText(String.valueOf(totalprojector));
+                        hour2free.setText(String.valueOf(totalprojector));
+                        hour3free.setText(String.valueOf(totalprojector));
+                        hour4free.setText(String.valueOf(totalprojector));
+                        hour5free.setText(String.valueOf(totalprojector));
+                        hour6free.setText(String.valueOf(totalprojector));
+                        hour7free.setText(String.valueOf(totalprojector));
+                        hour8free.setText(String.valueOf(totalprojector));
                         linearLayout.setVisibility(LinearLayout.VISIBLE);
                         SnackbarMainActivity = Snackbar
                                 .make(coordinatorLayoutMainActivity, errorMsg, Snackbar.LENGTH_SHORT);
@@ -326,7 +333,6 @@ public class DetailedView extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        MainActivity.dept_projector.clear();
         this.finish();
     }
 
