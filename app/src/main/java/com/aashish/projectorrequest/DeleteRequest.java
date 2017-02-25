@@ -86,7 +86,7 @@ public class DeleteRequest extends AppCompatActivity {
             public void onClick(View v) {
                 String date = date_spinner.getSelectedItem().toString();
                 String hour = hour_spinner.getSelectedItem().toString();
-                String projector = hour_spinner.getSelectedItem().toString();
+                String projector = projector_spinner.getSelectedItem().toString();
 
                 if (hour.equalsIgnoreCase(getResources().getString(R.string.select_hour)) || projector.equalsIgnoreCase(getResources().getString(R.string.select_projector)) || date.equalsIgnoreCase(getResources().getString(R.string.select_date)) ) {
                     SnackbarDelete = Snackbar
