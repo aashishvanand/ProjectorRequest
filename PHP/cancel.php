@@ -102,7 +102,7 @@
                               Select a Date : 
                            </td>
                            <td>
-                              <input id="datefield" name="datefield" type='date' min='2017-01-01' max='2100-13-13'></input><br><br>
+                              <input id="datefield" name="datefield" type="text" /><br><br>
                            </td>
                         </tr>
                         <tr class="spaceUnder">
@@ -168,10 +168,12 @@
       <!-- /#wrapper -->
       <!-- jQuery -->
       <script src="js/jquery.js"></script>
+      <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js" integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE=" crossorigin="anonymous"></script>
+      <script src="js/del.js"></script>
       <!-- Bootstrap Core JavaScript -->
       <script src="js/bootstrap.min.js"></script>
-      <script src="js/del.js"></script>
-      <!-- Menu Toggle Script -->
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.1/themes/smoothness/jquery-ui.css" />
+      <!-- Menu Toggle Script IPPO dhan phone cut pannan  --> 
       <script>
          $("#menu-toggle").click(function(e) {
              e.preventDefault();
@@ -179,19 +181,16 @@
          });
       </script>
       <script>
-         var today = new Date();
-         var dd = today.getDate();
-         var mm = today.getMonth()+1; //January is 0!
-         var yyyy = today.getFullYear();
-          if(dd<10){
-                 dd='0'+dd
-             } 
-             if(mm<10){
-                 mm='0'+mm
-             } 
-         
-         today = yyyy+'-'+mm+'-'+dd;
-         document.getElementById("datefield").setAttribute("min", today);
+	$(function(){
+		$("#datefield").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			changeRange:"-100:+0",
+			dateFormat:"yy MM dd",
+			minDate: 0 
+		});
+	});
       </script>
+
    </body>
 </html>

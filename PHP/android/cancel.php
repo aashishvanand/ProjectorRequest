@@ -16,10 +16,10 @@ if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
 }
 
-$date_array = array();
-$hour_array = array();
-$projector_array = array();
-$today = date('d/m/Y');
+$date = array();
+$hour = array();
+$projector = array();
+$today = date('Y-m-d');
 
 if ( (isset($_POST['code'])) && (isset($_POST['dept'])) ){
 
@@ -37,21 +37,16 @@ if ( (isset($_POST['code'])) && (isset($_POST['dept'])) ){
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc())
 		{
-			$date = $row["date"];
-			array_push($date_array,$date);
-
-			$hour = $row["hour"];
-			array_push($hour_array,$hour);
-
-			$projector = $row["projector"];
-			array_push($projector_array,$projector);
+			array_push($date,$row["date"]);
+			array_push($hour,$row["hour"]);
+			array_push($projector,$row["projector"]);
 
 		}
 	}
 
-	$response["date"]=$date_array;
-	$response["hour"]=$hour_array;
-	$response["projector"]=$projector_array;
+	$response["date"]=$date;
+	$response["hour"]=$hour;
+	$response["projector"]=$projector;
 	echo json_encode($response);
 }
 else {

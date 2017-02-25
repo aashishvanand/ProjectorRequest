@@ -18,6 +18,24 @@
    $year=$_POST['year'];
    $dept=$_POST['department'];
    $section=$_POST['section'];	
+		
+		$date_arr = explode(" ", $date);
+switch(strtolower($date_arr[1])){
+	case 'january': $date_arr[1]='01';break;
+	case 'february': $date_arr[1]='02';break;
+	case 'march': $date_arr[1]='03';break;
+	case 'april': $date_arr[1]='04';break;
+	case 'may': $date_arr[1]='05';break;
+	case 'june': $date_arr[1]='06';break;
+	case 'july': $date_arr[1]='07';break;
+	case 'august': $date_arr[1]='08';break;
+	case 'september': $date_arr[1]='09';break;
+	case 'october': $date_arr[1]='10';break;
+	case 'november': $date_arr[1]='11';break;
+	case 'december': $date_arr[1]='12';break;
+}
+$final_date=implode('-',$date_arr);
+
    
    switch ($dept) {
        		case "aero":
@@ -73,7 +91,7 @@
 				break;
        	}
    	$stmt->execute();
-           $stmt->bind_param("sss", $date,$hour,$projector);
+           $stmt->bind_param("sss", $final_date,$hour,$projector);
            $stmt->execute();
            $stmt->store_result();
    
@@ -137,7 +155,7 @@
 				$store = $mysqli->prepare("INSERT INTO `mca.projector`(date, hour, staffcode, requesttime, projector,department,year,section) VALUES(?, ?, ?, NOW(), ?,?,?,?)");
 				break;
        	}
-           $store->bind_param("sssssss", $date, $hour, $staffcode,$projector,$dept,$year,$section);
+           $store->bind_param("sssssss", $final_date, $hour, $staffcode,$projector,$dept,$year,$section);
            $store->execute();
    	$resp = array('msg'=>'1');
            echo json_encode($resp);
