@@ -18,7 +18,7 @@
       $servername = "localhost";
       $username = "root";
       $password = "*******";
-      $dbname = "projector";
+      $dbname = "rec";
       
       // Create connection
       $conn = mysqli_connect($servername, $username, $password, $dbname);
