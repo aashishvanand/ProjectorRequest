@@ -26,12 +26,51 @@ if ( (isset($_POST['code'])) && (isset($_POST['dept'])) ){
 	$code = $_POST['code'];
 	$dept = $_POST['dept'];
 	switch ($dept) {
-    		case "cse":
+    		case "aero":
+			$sql = "SELECT * FROM `aero.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+       		case "auto":
+			$sql = "SELECT * FROM `auto.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+		case "btech":
+			$sql = "SELECT * FROM `btech.projector` WHERE date >= '$today' and staffcode = '$code'";
+           		break;
+		case "bmed":
+			$sql = "SELECT * FROM `bmed.projector` WHERE date >= '$today' and staffcode = '$code'";
+        	   	break;
+		case "chem":
+			$sql = "SELECT * FROM `chem.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+		case "civil":
+			$sql = "SELECT * FROM `civil.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;			
+    	   	case "cse":
 			$sql = "SELECT * FROM `cse.projector` WHERE date >= '$today' and staffcode = '$code'";
-        		break;
-    		case "mech":
+			break;
+		case "eee":
+			$sql = "SELECT * FROM `eee.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+		case "ece":
+			$sql = "SELECT * FROM `ece.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+		case "it":
+			$sql = "SELECT * FROM `it.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+		case "mech":
 			$sql = "SELECT * FROM `mech.projector` WHERE date >= '$today' and staffcode = '$code'";
-        		break;
+			break;
+		case "mtrcs":
+			$sql = "SELECT * FROM `mtrcs.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+		case "hd":
+			$sql = "SELECT * FROM `hd.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+		case "mba":
+			$sql = "SELECT * FROM `mba.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
+		case "mca":
+			$sql = "SELECT * FROM `mca.projector` WHERE date >= '$today' and staffcode = '$code'";
+			break;
 			}
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
